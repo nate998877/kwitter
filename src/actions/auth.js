@@ -34,6 +34,35 @@ const login = loginData => dispatch => {
     });
 };
 
+const logout = logoutData => dispatch => {
+  dispatch({
+    type: LOGIN
+  });
+
+  return fetch(url + "/login", {
+    method: "POST",
+    headers: jsonHeaders,
+    body: JSON.stringify(loginData)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      console.log(result)
+      return dispatch({
+        type: LOGIN_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: LOGIN_FAIL, payload: err.message })
+      );
+    });
+}
+
 export const loginThenGoToUserProfile = loginData => dispatch => {
   return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
 };
+
+export const logoutLoggedInUser = logoutData => dispatch => {
+  return dispatch(logout(logoutData))
+}
