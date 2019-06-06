@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-./server
+server
 
 # production
 /build
