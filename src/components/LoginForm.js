@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loginThenGoToUserProfile as login } from "../actions";
 import Spinner from "react-spinkit";
+import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
+import squirrel from "./Squirrel.png";
 
 class LoginForm extends Component {
   state = { username: "", password: "" };
@@ -19,8 +22,11 @@ class LoginForm extends Component {
     const { isLoading, err } = this.props;
     return (
       <React.Fragment>
+        <Segment placeholder>
+        <Grid columns={2} relaxed='very' stackable>
+        <Grid.Column>
         <h1>Login</h1>
-        <form onSubmit={this.handleLogin}>
+        <Form onSubmit={this.handleLogin}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -28,20 +34,37 @@ class LoginForm extends Component {
             autoFocus
             required
             onChange={this.handleChange}
-          />
+            />
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             required
             onChange={this.handleChange}
-          />
-          <button type="submit" disabled={isLoading}>
+            />
+          <h2>Take part in the Chittering</h2>
+          <div id='buttonRow'>
+          <Button type="submit" disabled={isLoading}>
+            Forgotten Password
+          </Button>
+          <Button type="submit" disabled={isLoading}>
+            Create Account
+          </Button>
+          </div>
+        </Form>
+        </Grid.Column>
+        <Grid.Column>
+          <h1>Secret Squirrel, Inc.</h1>
+        <img src={squirrel} alt="new" />
+        </Grid.Column>
+        </Grid>
+        <Divider vertical>
+        <Button type="submit" disabled={isLoading}>
             Login
-          </button>
-        </form>
-        {isLoading && <Spinner name="circle" color="blue" />}
-        {err && <p style={{ color: "red" }}>{err}</p>}
+          </Button></Divider>
+            </Segment>
+            {isLoading && <Spinner name="circle" color="blue" />}
+            {err && <p style={{ color: "red" }}>{err}</p>}
       </React.Fragment>
     );
   }
