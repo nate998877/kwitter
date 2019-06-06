@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "connected-react-router": "^6.3.1",
+    "gulp": "^4.0.2",
     "history": "^4.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -14,12 +15,16 @@
     "react-spinkit": "^3.0.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
+<<<<<<< HEAD
+=======
+    "redux-logger": "^3.0.6",
+>>>>>>> 474911a565eafaf7f24aae42dd6d4db6f9c2cd77
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
