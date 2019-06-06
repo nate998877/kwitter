@@ -23,7 +23,7 @@ class LoginForm extends Component {
     return (
       <React.Fragment>
         <Segment placeholder>
-        <Grid columns={2} relaxed='very' stackable>
+        <Grid columns={2} relaxed='very' doubling centered >
         <Grid.Column>
         <h1>Login</h1>
         <Form onSubmit={this.handleLogin}>
@@ -42,6 +42,10 @@ class LoginForm extends Component {
             required
             onChange={this.handleChange}
             />
+        <Button type="submit" disabled={isLoading}>
+            Login
+          </Button>
+        </Form>
           <h2>Take part in the Chittering</h2>
           <div id='buttonRow'>
           <Button type="submit" disabled={isLoading}>
@@ -51,17 +55,13 @@ class LoginForm extends Component {
             Create Account
           </Button>
           </div>
-        </Form>
         </Grid.Column>
         <Grid.Column>
           <h1>Secret Squirrel, Inc.</h1>
         <img src={squirrel} alt="new" />
         </Grid.Column>
         </Grid>
-        <Divider vertical>
-        <Button type="submit" disabled={isLoading}>
-            Login
-          </Button></Divider>
+        <Divider vertical/>
             </Segment>
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
