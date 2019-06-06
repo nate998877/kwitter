@@ -5,6 +5,9 @@ import { push } from "connected-react-router";
 export const LOGIN = "LOGIN";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT_FAIL = "LOGOUT_FAIL";
 
 const url = domain + "/auth";
 
@@ -36,25 +39,24 @@ const login = loginData => dispatch => {
 
 const logout = logoutData => dispatch => {
   dispatch({
-    type: LOGIN
+    type: LOGOUT
   });
 
-  return fetch(url + "/login", {
-    method: "POST",
+  return fetch(url + "/logout", {
     headers: jsonHeaders,
-    body: JSON.stringify(loginData)
+    body: JSON.stringify(logoutData)
   })
     .then(handleJsonResponse)
     .then(result => {
       console.log(result)
       return dispatch({
-        type: LOGIN_SUCCESS,
+        type: LOGOUT_SUCCESS,
         payload: result
       });
     })
     .catch(err => {
       return Promise.reject(
-        dispatch({ type: LOGIN_FAIL, payload: err.message })
+        dispatch({ type: LOGOUT_FAIL, payload: err.message })
       );
     });
 }
