@@ -13,6 +13,7 @@ const url = domain + "/auth";
 
 // action creators
 const login = loginData => dispatch => {
+  //loginData is an object {username:username, password:password}
   dispatch({
     type: LOGIN
   });
@@ -24,7 +25,6 @@ const login = loginData => dispatch => {
   })
     .then(handleJsonResponse)
     .then(result => {
-      console.log(result)
       return dispatch({
         type: LOGIN_SUCCESS,
         payload: result
@@ -37,18 +37,14 @@ const login = loginData => dispatch => {
     });
 };
 
-const logout = logoutData => dispatch => {
+const logout = () => dispatch => {
   dispatch({
     type: LOGOUT
   });
 
-  return fetch(url + "/logout", {
-    headers: jsonHeaders,
-    body: JSON.stringify(logoutData)
-  })
+  return fetch(url + "/logout", {})
     .then(handleJsonResponse)
     .then(result => {
-      console.log(result)
       return dispatch({
         type: LOGOUT_SUCCESS,
         payload: result
@@ -65,6 +61,6 @@ export const loginThenGoToUserProfile = loginData => dispatch => {
   return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
 };
 
-export const logoutLoggedInUser = logoutData => dispatch => {
-  return dispatch(logout(logoutData))
+export const logoutLoggedInUser = () => dispatch => {
+  return dispatch(logout()).then(() => dispatch(push("/")));
 }

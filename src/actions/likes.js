@@ -2,30 +2,30 @@ import { domain, jsonHeaders, handleJsonResponse } from "./constants";
 import { push } from "connected-react-router";
 
 // action types
-export const LIKE           = "LIKE";
-export const LIKE_SUCCESS   = "LIKE_SUCCESS";
-export const LIKE_FAIL      = "LIKE_FAIL";
-export const UNLIKE         = "UNLIKE";
+export const LIKE = "LIKE";
+export const LIKE_SUCCESS = "LIKE_SUCCESS";
+export const LIKE_FAIL = "LIKE_FAIL";
+export const UNLIKE = "UNLIKE";
 export const UNLIKE_SUCCESS = "UNLIKE_SUCCESS";
-export const UNLIKE_FAIL    = "UNLIKE_FAIL";
+export const UNLIKE_FAIL = "UNLIKE_FAIL";
 
 
 const url = domain + "/likes";
 
 // action creators
 const like = likeData => dispatch => {
+  //likeData is an object {messageId:messageId}
   dispatch({
     type: LIKE
   });
 
-  return fetch(url + "/likes", {
+  return fetch(url, {
     method: "POST",
     headers: jsonHeaders,
     body: JSON.stringify(likeData)
   })
     .then(handleJsonResponse)
     .then(result => {
-      console.log(result)
       return dispatch({
         type: LIKE_SUCCESS,
         payload: result
@@ -38,6 +38,33 @@ const like = likeData => dispatch => {
     });
 };
 
-export const toggleLikeOnPost = likeData => dispatch => {
-  return dispatch(like(likeData)).then(() => dispatch(push("/likes")));
+const unlike = likeData => dispatch => {
+  //likeData is an object {id:likeId} likeids have to be retrieved from a message object
+  dispatch({
+    type: UNLIKE
+  });
+
+  return fetch(url + "/" + likeData.id, {
+    method: "DELETE"
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: UNLIKE_SUCCESS,
+        payload: result //OK
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: UNLIKE_FAIL, payload: err.message })
+      );
+    });
+};
+
+export const likePost = likeData => dispatch => {
+  return dispatch(like(likeData))
+};
+
+export const unlikePost = likeData => dispatch => {
+  return dispatch(unlike(likeData))
 };

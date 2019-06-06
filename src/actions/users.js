@@ -27,34 +27,194 @@ export const DELETE_USER_FAIL          = "DELETE_USER_FAIL";
 
 
 
-const url = domain + "/auth";
+const url = domain + "/users";
 
 // action creators
-const login = loginData => dispatch => {
+const getUsers = userData => dispatch => {
+  //userData is an object {limit, offset}
   dispatch({
-    type: LOGIN
+    type: GET_USERS
   });
 
-  return fetch(url + "/login", {
-    method: "POST",
-    headers: jsonHeaders,
-    body: JSON.stringify(loginData)
-  })
+  return fetch(url + `?limit=${userData.limit}&offset=${userData.offset}`)
     .then(handleJsonResponse)
     .then(result => {
-      console.log(result)
       return dispatch({
-        type: LOGIN_SUCCESS,
+        type: GET_USERS_SUCCESS,
         payload: result
       });
     })
     .catch(err => {
       return Promise.reject(
-        dispatch({ type: LOGIN_FAIL, payload: err.message })
+        dispatch({ type: GET_USERS_FAIL, payload: err.message })
       );
     });
 };
 
-export const loginThenGoToUserProfile = loginData => dispatch => {
-  return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
+const getUser = userData => dispatch => {
+  //userData is an object {id:userId}
+  dispatch({
+    type: GET_USER
+  });
+
+  return fetch(url + "/" + userData.id)
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: GET_USER_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: GET_USER_FAIL, payload: err.message })
+      );
+    });
+};
+
+const getUserPhoto = userData => dispatch => {
+  //userData is an object {id:userId}
+  dispatch({
+    type: GET_USER_PHOTO
+  });
+
+  //TODO: handle image here
+  return fetch(url + `/${userData.id}/picture`)
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: GET_USER_PHOTO_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: GET_USER_PHOTO_FAIL, payload: err.message })
+      );
+    });
+};
+
+const createUser = userData => dispatch => {
+  //userData is an object {username, displayname, password}
+  dispatch({
+    type: CREATE_USER
+  });
+
+  return fetch(url, {
+    method: "POST",
+    headers: jsonHeaders,
+    body: JSON.stringify(userData)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: CREATE_USER_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: CREATE_USER_FAIL, payload: err.message })
+      );
+    });
+};
+
+const updateUserPhoto = userData => dispatch => {
+    //userData is an object {id:userId, picture}
+  dispatch({
+    type: UPDATE_USER_PHOTO
+  });
+
+  //TODO:Handle Image
+  return fetch(url + `/${userData.id}/picture`, {
+    method: "PUT",
+    headers: jsonHeaders,
+    body: JSON.stringify(userData)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: UPDATE_USER_PHOTO_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: UPDATE_USER_PHOTO_FAIL, payload: err.message })
+      );
+    });
+};
+
+const updateUser = userData => dispatch => {
+    //userData is an object {limit, offset}
+  dispatch({
+    type: UPDATE_USER
+  });
+
+  return fetch(url + "/" + userData.ID, {
+    method: "patch",
+    headers: jsonHeaders,
+    body: JSON.stringify(userData)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: UPDATE_USER_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: UPDATE_USER_FAIL, payload: err.message })
+      );
+    });
+};
+
+const deleteUser = userData => dispatch => {
+    //userData is an object {limit, offset}
+  dispatch({
+    type: DELETE_USER
+  });
+
+  return fetch(url + "/" + userData.ID, {
+    method: "DELETE",
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: DELETE_USER_SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: DELETE_USER_FAIL, payload: err.message })
+      );
+    });
+};
+
+
+
+
+
+export const getUsersAction = userData => dispatch => {
+  return dispatch(getUsers(userData))
+};
+export const getUserAction = userData => dispatch => {
+  return dispatch(getUser(userData))
+};
+export const getUserPhotoAction = userData => dispatch => {
+  return dispatch(getUserPhoto(userData))
+};
+export const createUserAction = userData => dispatch => {
+  return dispatch(createUser(userData))
+};
+export const deleteUserAction = userData => dispatch => {
+  return dispatch(deleteUser(userData))
+};
+export const updateUserPhotoAction = userData => dispatch => {
+  return dispatch(updateUserPhoto(userData))
+};
+export const updateUserAction = userData => dispatch => {
+  return dispatch(updateUser(userData))
 };
