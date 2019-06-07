@@ -11,12 +11,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* div {
-  background-color: rgba(245, 245, 245, 0.300) !important;
-
-
-} */
-
 #buttonRow {
   display:flex !important;
   flex-direction: row !important;
