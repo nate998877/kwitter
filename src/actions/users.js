@@ -78,7 +78,6 @@ const getUserPhoto = userData => dispatch => {
     type: GET_USER_PHOTO
   });
 
-  //TODO: handle image here
   return fetch(url + `/${userData.id}/picture`)
     .then(handleJsonResponse)
     .then(result => {
@@ -128,8 +127,8 @@ const updateUserPhoto = userData => dispatch => {
   //TODO:Handle Image
   return fetch(url + `/${userData.id}/picture`, {
     method: "PUT",
-    headers: jsonHeaders,
-    body: JSON.stringify(userData)
+    headers: {'Content-Type': 'multipart/form-data'},
+    body: userData.picture
   })
     .then(handleJsonResponse)
     .then(result => {
