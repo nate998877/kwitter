@@ -124,10 +124,12 @@ const updateUserPhoto = userData => dispatch => {
     type: UPDATE_USER_PHOTO
   });
 
-  //TODO:Handle Image
   return fetch(url + `/${userData.id}/picture`, {
     method: "PUT",
-    headers: {'Content-Type': 'multipart/form-data'},
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${userData.token}`
+  },
     body: userData.picture
   })
     .then(handleJsonResponse)
@@ -152,7 +154,7 @@ const updateUser = userData => dispatch => {
 
   return fetch(url + "/" + userData.ID, {
     method: "patch",
-    headers: jsonHeaders,
+    headers: {...jsonHeaders, Authorization: `Bearer ${userData.token}`},
     body: JSON.stringify(userData)
   })
     .then(handleJsonResponse)
@@ -177,6 +179,7 @@ const deleteUser = userData => dispatch => {
 
   return fetch(url + "/" + userData.ID, {
     method: "DELETE",
+    headers: {Authorization: `Bearer ${userData.token}`},
   })
     .then(handleJsonResponse)
     .then(result => {

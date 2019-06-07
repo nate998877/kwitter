@@ -70,7 +70,7 @@ const createMessage = messageData => dispatch => {
 
   return fetch(url, {
     method: "POST",
-    headers: jsonHeaders,
+    headers: {...jsonHeaders, Authorization: `Bearer ${messageData.token}`},
     body: JSON.stringify(messageData)
   })
     .then(handleJsonResponse)
@@ -95,6 +95,9 @@ const deleteMessage = messageData => dispatch => {
 
   return fetch(url + '/' + messageData.id, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${messageData.token}`
+    }
   })
     .then(handleJsonResponse)
     .then(result => {

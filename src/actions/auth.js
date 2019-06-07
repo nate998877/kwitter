@@ -37,12 +37,16 @@ const login = loginData => dispatch => {
     });
 };
 
-const logout = () => dispatch => {
+const logout = loginData => dispatch => {
   dispatch({
     type: LOGOUT
   });
 
-  return fetch(url + "/logout", {})
+  return fetch(url + "/logout", {
+    headers: {
+      Authorization: `Bearer ${loginData.token}`
+    }
+  })
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -61,6 +65,6 @@ export const loginThenGoToUserProfile = loginData => dispatch => {
   return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
 };
 
-export const logoutLoggedInUser = () => dispatch => {
-  return dispatch(logout()).then(() => dispatch(push("/")));
+export const logoutLoggedInUser = loginData => dispatch => {
+  return dispatch(logout(loginData)).then(() => dispatch(push("/")));
 }
