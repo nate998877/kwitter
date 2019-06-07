@@ -37,12 +37,24 @@ const login = loginData => dispatch => {
     });
 };
 
+<<<<<<< HEAD
 const logout = () => dispatch => {
+=======
+const logout = loginData => dispatch => {
+>>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
   dispatch({
     type: LOGOUT
   });
 
+<<<<<<< HEAD
   return fetch(url + "/logout", {})
+=======
+  return fetch(url + "/logout", {
+    headers: {
+      Authorization: `Bearer ${loginData.token}`
+    }
+  })
+>>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -61,6 +73,11 @@ export const loginThenGoToUserProfile = loginData => dispatch => {
   return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
 };
 
+<<<<<<< HEAD
 export const logoutLoggedInUser = () => dispatch => {
   return dispatch(logout()).then(() => dispatch(push("/")));
+=======
+export const logoutLoggedInUser = loginData => dispatch => {
+  return dispatch(logout(loginData)).then(() => dispatch(push("/")));
+>>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
 }
