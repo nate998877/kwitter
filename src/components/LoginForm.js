@@ -92,6 +92,7 @@ class LoginForm extends Component {
                     Create Account
           </Button>
                 </div>
+                </form>
         </Grid.Column>
               <Grid.Column>
                 <h1>Secret Squirrel, Inc.</h1>
@@ -107,9 +108,9 @@ class LoginForm extends Component {
       }
     }
     
-    export default connect(
+export default connect(
   ({auth}) => ({
-          isLoading: auth.loginLoading,
+        isLoading: auth.loginLoading,
         err: auth.loginError
       }),
   {login, createUser }
