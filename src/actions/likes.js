@@ -49,10 +49,14 @@ const unlike = likeData => dispatch => {
   });
 
   return fetch(url + "/" + likeData.id, {
+<<<<<<< HEAD
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${likeData.token}`
     }
+=======
+    method: "DELETE"
+>>>>>>> DESIGN-profile_page
   })
     .then(handleJsonResponse)
     .then(result => {
