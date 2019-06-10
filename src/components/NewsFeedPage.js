@@ -18,7 +18,7 @@ class NewsFeedPage extends Component {
                         <Grid.Row>
                             <Grid columns={2} divided>
                                 <Grid.Column>
-                                    <Grid.Row><Image class="userPostProfileImage" src="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg"></Image></Grid.Row>
+                                    <Grid.Row><Image className="userPostProfileImage" src="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg"></Image></Grid.Row>
                                     <Grid.Row><p>UserName</p></Grid.Row>
                                 </Grid.Column>
                                 <Grid.Column>
