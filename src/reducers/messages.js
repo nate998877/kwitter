@@ -26,46 +26,46 @@ export default (state = initialState, action) => {
     case GET_MESSAGES:
       return {
         ...state,
-        getMessagesLoading: true,
-        getMessagesError: null
+        messageLoading: true,
+        messageError: null
       };
     case GET_MESSAGES_SUCCESS:
-      return { ...state, getMessages: action.payload, getMessagesLoading: false };
+      return { ...state, message: action.payload, messageLoading: false };
     case GET_MESSAGES_FAIL:
-      return { ...state, getMessagesError: action.payload, getMessagesLoading: false };
+      return { ...state, messageError: action.payload, messageLoading: false };
       
     case GET_MESSAGE:
       return {
         ...state,
-        getMessageLoading: true,
-        getMessageError: null
+        messageLoading: true,
+        messageError: null
       };
     case GET_MESSAGE_SUCCESS:
-      return { ...state, getMessage: action.payload, getMessageLoading: false };
+      return { ...state, message: action.payload, messageLoading: false };
     case GET_MESSAGE_FAIL:
-        return { ...state, getMessageError: action.payload, getMessageLoading: false };
+        return { ...state, messageError: action.payload, messageLoading: false };
       
     case CREATE_MESSAGE:
       return {
         ...state,
-        createMessageLoading: true,
-        createMessageError: null
+        messageLoading: true,
+        messageError: null
       };
     case CREATE_MESSAGE_SUCCESS:
-      return { ...state, createMessage: action.payload, createMessageLoading: false };
+      return { ...state, message: action.payload, messageLoading: false };
     case CREATE_MESSAGE_FAIL:
-      return { ...state, createMessageError: action.payload, createMessageLoading: false };
+      return { ...state, messageError: action.payload, messageLoading: false };
 
     case DELETE_MESSAGE:
       return {
         ...state,
-        deleteMessageLoading: true,
-        deleteMessageError: null
+        messageLoading: true,
+        messageError: null
       };
     case DELETE_MESSAGE_SUCCESS:
-      return { ...state, deleteMessage: action.payload, deleteMessageLoading: false };
+      return { ...state, message: action.payload, messageLoading: false };
     case DELETE_MESSAGE_FAIL:
-      return { ...state, deleteMessageError: action.payload, deleteMessageLoading: false };
+      return { ...state, messageError: action.payload, messageLoading: false };
       
 
     default:
