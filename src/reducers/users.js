@@ -20,13 +20,13 @@ export default (state = initialState, action) => {
     case GET_USERS:
       return {
         ...state,
-        getUsersLoading: true,
-        getUsersError: null
+        usersLoading: true,
+        usersError: null
       };
     case GET_USERS_SUCCESS:
-      return { ...state, getUsers: action.payload, getUsersLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case GET_USERS_FAIL:
-      return { ...state, getUsersError: action.payload, getUsersLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     case GET_USER:
       return {
@@ -35,9 +35,9 @@ export default (state = initialState, action) => {
         getUserError: null
       };
     case GET_USER_SUCCESS:
-      return { ...state, getUser: action.payload, getUserLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case GET_USER_FAIL:
-      return { ...state, getUserError: action.payload, getUserLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     case GET_USER_PHOTO:
       return {
@@ -46,53 +46,53 @@ export default (state = initialState, action) => {
         getUserPhotoError: null
       };
     case GET_USER_PHOTO_SUCCESS:
-      return { ...state, getUserPhoto: action.payload, getUserPhotoLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case GET_USER_PHOTO_FAIL:
-      return { ...state, getUserPhotoError: action.payload, getUserPhotoLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     case CREATE_USER:
       return {
         ...state,
-        getUsersLoading: true,
-        getUsersError: null
+        usersLoading: true,
+        usersError: null
       };
     case CREATE_USER_SUCCESS:
-      return { ...state, getUsers: action.payload, getUsersLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case CREATE_USER_FAIL:
-      return { ...state, getUsersError: action.payload, getUsersLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     case UPDATE_USER_PHOTO:
       return {
         ...state,
-        getUsersLoading: true,
-        getUsersError: null
+        usersLoading: true,
+        usersError: null
       };
     case UPDATE_USER_PHOTO_SUCCESS:
-      return { ...state, getUsers: action.payload, getUsersLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case UPDATE_USER_PHOTO_FAIL:
-      return { ...state, getUsersError: action.payload, getUsersLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     case UPDATE_USER:
       return {
         ...state,
-        getUsersLoading: true,
-        getUsersError: null
+        usersLoading: true,
+        usersError: null
       };
     case UPDATE_USER_SUCCESS:
-      return { ...state, getUsers: action.payload, getUsersLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case UPDATE_USER_FAIL:
-      return { ...state, getUsersError: action.payload, getUsersLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     case DELETE_USER:
       return {
         ...state,
-        getUsersLoading: true,
-        getUsersError: null
+        usersLoading: true,
+        usersError: null
       };
     case DELETE_USER_SUCCESS:
-      return { ...state, getUsers: action.payload, getUsersLoading: false };
+      return { ...state, users: action.payload, usersLoading: false };
     case DELETE_USER_FAIL:
-      return { ...state, getUsersError: action.payload, getUsersLoading: false };
+      return { ...state, usersError: action.payload, usersLoading: false };
 
     default:
       return state;
