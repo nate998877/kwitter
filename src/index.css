@@ -25,3 +25,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#mid-Col{
+  background-color: rgba(255, 255, 255, 0.698); 
+}
+#right-Col, #left-Col {
+  background-color: rgba(151, 143, 143, 0.466); 
+}
+#navBar-Container{
+  background-color: white;
+  margin-bottom: 15px;  
+}
+
+
