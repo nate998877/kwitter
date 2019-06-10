@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loginThenGoToUserProfile as login } from "../actions";
 import Spinner from "react-spinkit";
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import squirrel from "./Squirrel.png";
 
@@ -22,8 +22,9 @@ class LoginForm extends Component {
     const { isLoading, err } = this.props;
     return (
       <React.Fragment>
-        <Segment placeholder>
-        <Grid columns={2} relaxed='very' doubling centered >
+        <br/>
+        <div id="loginBackground">
+        <Grid columns={2} relaxed='very' doubling padded>
         <Grid.Column>
         <h1>Login</h1>
         <Form onSubmit={this.handleLogin}>
@@ -61,8 +62,7 @@ class LoginForm extends Component {
         <img src={squirrel} alt="new" />
         </Grid.Column>
         </Grid>
-        <Divider vertical/>
-            </Segment>
+            </div>
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
       </React.Fragment>
