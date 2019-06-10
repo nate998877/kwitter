@@ -1,5 +1,9 @@
 import { LIKE, LIKE_SUCCESS, LIKE_FAIL, UNLIKE, UNLIKE_SUCCESS, UNLIKE_FAIL } from "../actions";
-const initialState = {};
+const initialState = {
+  likeLoading: false,
+  like: null,
+  likeError: null
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -17,13 +21,13 @@ export default (state = initialState, action) => {
     case UNLIKE:
       return {
         ...state,
-        unlikeLoading: true,
-        unlikeError: null
+        likeLoading: true,
+        likeError: null
       };
     case UNLIKE_SUCCESS:
-      return { ...state, unlike: action.payload, unlikeLoading: false };
+      return { ...state, like: action.payload, likeLoading: false };
     case UNLIKE_FAIL:
-      return { ...state, unlikeError: action.payload, unlikeLoading: false };
+      return { ...state, likeError: action.payload, likeLoading: false };
 
     default:
       return state;
