@@ -30,88 +30,87 @@ class LoginForm extends Component {
     return (
       <React.Fragment>
         <Segment placeholder>
-        <Grid columns={2} relaxed='very' doubling centered >
-        <Grid.Column>
-        <h1>Login</h1>
-        <Form onSubmit={this.handleLogin}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            autoFocus
-            required
-            onChange={this.handleChange}
-            />
-          <label htmlFor="password">Password</label>
-          <input
-            type="current-password"
-            name="password"
-            required
-            onChange={this.handleChange}
-          />
-          <button type="submit" disabled={isLoading}>
-            Login
+          <Grid columns={2} relaxed='very' doubling centered >
+            <Grid.Column>
+              <h1>Login</h1>
+              <form onSubmit={this.handleLogin}>
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  autoFocus
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                  type="current-password"
+                  name="password"
+                  required
+                  onChange={this.handleChange}
+                />
+                <button type="submit" disabled={isLoading}>
+                  Login
           </button>
         </form>
 
 
-        <h1>Create User</h1>
-        <form onSubmit={this.handleCreateUser}>
-        <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            autoFocus
-            required
-            onChange={this.handleChange}
-          />
-          <label htmlFor="displayName">DisplayName</label>
-          <input
-            type="text"
-            name="displayName"
-            autoFocus
-            required
-            onChange={this.handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="new-password"
-            name="password"
-            required
-            onChange={this.handleChange}
-            />
-        <Button type="submit" disabled={isLoading}>
-            Login
+              <h1>Create User</h1>
+              <form onSubmit={this.handleCreateUser}>
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  autoFocus
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="displayName">DisplayName</label>
+                <input
+                  type="text"
+                  name="displayName"
+                  autoFocus
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                  type="new-password"
+                  name="password"
+                  required
+                  onChange={this.handleChange}
+                />
+                <Button type="submit" disabled={isLoading}>
+                  Login
+        </Button>
+                <h2>Take part in the Chittering</h2>
+                <div id='buttonRow'>
+                  <Button type="submit" disabled={isLoading}>
+                    Forgotten Password
           </Button>
-        </Form>
-          <h2>Take part in the Chittering</h2>
-          <div id='buttonRow'>
-          <Button type="submit" disabled={isLoading}>
-            Forgotten Password
+                  <Button type="submit" disabled={isLoading}>
+                    Create Account
           </Button>
-          <Button type="submit" disabled={isLoading}>
-            Create Account
-          </Button>
-          </div>
+                </div>
         </Grid.Column>
-        <Grid.Column>
-          <h1>Secret Squirrel, Inc.</h1>
-        <img src={squirrel} alt="new" />
-        </Grid.Column>
+              <Grid.Column>
+                <h1>Secret Squirrel, Inc.</h1>
+                <img src={squirrel} alt="new" />
+              </Grid.Column>
         </Grid>
-        <Divider vertical/>
+            <Divider vertical />
             </Segment>
-            {isLoading && <Spinner name="circle" color="blue" />}
-            {err && <p style={{ color: "red" }}>{err}</p>}
+          {isLoading && <Spinner name="circle" color="blue" />}
+          {err && <p style={{ color: "red" }}>{err}</p>}
       </React.Fragment>
-    );
-  }
-}
-
-export default connect(
-  ({ auth }) => ({
-    isLoading: auth.loginLoading,
-    err: auth.loginError
-  }),
-  { login, createUser }
-)(LoginForm);
+        );
+      }
+    }
+    
+    export default connect(
+  ({auth}) => ({
+          isLoading: auth.loginLoading,
+        err: auth.loginError
+      }),
+  {login, createUser }
+      )(LoginForm);
