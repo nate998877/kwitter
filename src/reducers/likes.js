@@ -1,23 +1,33 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL } from "../actions";
-
+import { LIKE, LIKE_SUCCESS, LIKE_FAIL, UNLIKE, UNLIKE_SUCCESS, UNLIKE_FAIL } from "../actions";
 const initialState = {
-  loginLoading: false,
-  login: null,
-  loginError: null
+  likeLoading: false,
+  like: null,
+  likeError: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN:
+    case LIKE:
       return {
         ...state,
-        loginLoading: true,
-        loginError: null
+        likeLoading: true,
+        likeError: null
       };
-    case LOGIN_SUCCESS:
-      return { ...state, login: action.payload, loginLoading: false };
-    case LOGIN_FAIL:
-      return { ...state, loginError: action.payload, loginLoading: false };
+    case LIKE_SUCCESS:
+      return { ...state, like: action.payload, likeLoading: false };
+    case LIKE_FAIL:
+      return { ...state, likeError: action.payload, likeLoading: false };
+
+    case UNLIKE:
+      return {
+        ...state,
+        likeLoading: true,
+        likeError: null
+      };
+    case UNLIKE_SUCCESS:
+      return { ...state, like: action.payload, likeLoading: false };
+    case UNLIKE_FAIL:
+      return { ...state, likeError: action.payload, likeLoading: false };
 
     default:
       return state;

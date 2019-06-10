@@ -1,5 +1,4 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { push } from "connected-react-router";
 
 // action types
 export const GET_USERS                 = "GET_USERS";

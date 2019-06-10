@@ -1,5 +1,4 @@
-import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { push } from "connected-react-router";
+import { domain, handleJsonResponse } from "./constants";
 
 // action types
 export const LIKE = "LIKE";
@@ -21,7 +20,11 @@ const like = likeData => dispatch => {
 
   return fetch(url, {
     method: "POST",
-    headers: jsonHeaders,
+    headers: {
+      Authorization: `Bearer ${likeData.token}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
     body: JSON.stringify(likeData)
   })
     .then(handleJsonResponse)
@@ -45,7 +48,10 @@ const unlike = likeData => dispatch => {
   });
 
   return fetch(url + "/" + likeData.id, {
-    method: "DELETE"
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${likeData.token}`
+    }
   })
     .then(handleJsonResponse)
     .then(result => {
