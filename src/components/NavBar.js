@@ -1,24 +1,38 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Spinner from "react-spinkit";
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
+import React, { Component } from 'react'
+import { Menu } from 'semantic-ui-react'
 
 class NavBar extends Component {
-    state = { username: "", password: "" };
+  state = { activeItem: 'home' }
 
-    handleLogin = e => {
-        e.preventDefault();
-        this.props.login(this.state);
-    };
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-    handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
+  render() {
+    const { activeItem } = this.state
 
-    render() {
-        const { isLoading, err } = this.props;
-        return <React.Fragment />;
-    }
-    }
-
+    return (
+      <div id="navBar-Container">
+        <Menu pointing secondary>
+          <Menu.Item name='Profile' active={activeItem === 'Profile'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='Acorn Feed'
+            active={activeItem === 'Acorn Feed'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='Friends'
+            active={activeItem === 'Friends'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='Logout'
+              active={activeItem === 'Logout'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+        </Menu>
+      </div>
+    )
+  }
+}
+export default NavBar; 
