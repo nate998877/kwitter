@@ -8,11 +8,7 @@
 
 # testing
 /coverage
-<<<<<<< HEAD
-server
-=======
 /server
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
 
 # production
 /build

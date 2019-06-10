@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { loginThenGoToUserProfile as login } from "../actions";
 import Spinner from "react-spinkit";
 import settings from "./settingsAcorn.png"
-import { Divider, Button, Grid, Segment } from "semantic-ui-react";
+import { Button, Grid} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 
@@ -19,9 +19,10 @@ class UserProfile extends Component {
       <React.Fragment>
         <div id="background">
         {/*NavBar will go here */}
-        <Grid columns={1} relaxed='very' doubling centered>
+        <Grid columns={1} relaxed='very' doubling padded>
         <Grid.Column>
-
+          <div id="profilePic">
+          </div>
           {/*This is where the picture will go */}
         </Grid.Column>
         <div id = 'settings'>
@@ -30,7 +31,7 @@ class UserProfile extends Component {
         </Button>
         </div>
         </Grid>
-        <Grid columns={3} relaxed='very' doubling centered >
+        <Grid columns={3} relaxed='very' doubling padded >
         <Grid.Column>
           {/* This is where the Account information */}
           rflrfvewrfsd

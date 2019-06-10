@@ -32,7 +32,7 @@ body {
 #background {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
+  justify-content: flex-end !important;
   align-content: center !important;
   background-color: rgba(245, 245, 245, 0.479) !important;
   margin: 4px !important;
