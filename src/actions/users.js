@@ -1,5 +1,4 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { push } from "connected-react-router";
 
 // action types
 export const GET_USERS                 = "GET_USERS";
@@ -92,6 +91,7 @@ const getUserPhoto = userData => dispatch => {
 };
 
 const createUser = userData => dispatch => {
+  console.log("CreateUser Action is Triggered")
   //userData is an object {username, displayname, password}
   dispatch({
     type: CREATE_USER
@@ -104,6 +104,7 @@ const createUser = userData => dispatch => {
   })
     .then(handleJsonResponse)
     .then(result => {
+      console.log(result)
       return dispatch({
         type: CREATE_USER_SUCCESS,
         payload: result
