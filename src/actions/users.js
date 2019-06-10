@@ -25,11 +25,6 @@ export const DELETE_USER_SUCCESS       = "DELETE_USER_SUCCESS";
 export const DELETE_USER_FAIL          = "DELETE_USER_FAIL";
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
 const url = domain + "/users";
 
 // action creators
@@ -81,10 +76,6 @@ const getUserPhoto = userData => dispatch => {
     type: GET_USER_PHOTO
   });
 
-<<<<<<< HEAD
-  //TODO: handle image here
-=======
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
   return fetch(url + `/${userData.id}/picture`)
     .then(handleJsonResponse)
     .then(result => {
@@ -131,13 +122,6 @@ const updateUserPhoto = userData => dispatch => {
     type: UPDATE_USER_PHOTO
   });
 
-<<<<<<< HEAD
-  //TODO:Handle Image
-  return fetch(url + `/${userData.id}/picture`, {
-    method: "PUT",
-    headers: jsonHeaders,
-    body: JSON.stringify(userData)
-=======
   return fetch(url + `/${userData.id}/picture`, {
     method: "PUT",
     headers: {
@@ -145,7 +129,6 @@ const updateUserPhoto = userData => dispatch => {
       Authorization: `Bearer ${userData.token}`
   },
     body: userData.picture
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -169,11 +152,7 @@ const updateUser = userData => dispatch => {
 
   return fetch(url + "/" + userData.ID, {
     method: "patch",
-<<<<<<< HEAD
-    headers: jsonHeaders,
-=======
     headers: {...jsonHeaders, Authorization: `Bearer ${userData.token}`},
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
     body: JSON.stringify(userData)
   })
     .then(handleJsonResponse)
@@ -198,10 +177,7 @@ const deleteUser = userData => dispatch => {
 
   return fetch(url + "/" + userData.ID, {
     method: "DELETE",
-<<<<<<< HEAD
-=======
     headers: {Authorization: `Bearer ${userData.token}`},
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -218,12 +194,6 @@ const deleteUser = userData => dispatch => {
 };
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
 export const getUsersAction = userData => dispatch => {
   return dispatch(getUsers(userData))
 };
