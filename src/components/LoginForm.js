@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loginThenGoToUserProfile as login } from "../actions";
+import { loginThenGoToUserProfile as login, createUserAction as createUser } from "../actions";
 import Spinner from "react-spinkit";
 
 class LoginForm extends Component {
@@ -8,8 +8,15 @@ class LoginForm extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    this.props.login(this.state);
+    let stateWithoutDisplayName = this.state
+    delete stateWithoutDisplayName.displayName
+    this.props.login(stateWithoutDisplayName);
   };
+
+  handleCreateUser = e => {
+    e.preventDefault();
+    this.props.createUser(this.state);
+  }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -31,7 +38,38 @@ class LoginForm extends Component {
           />
           <label htmlFor="password">Password</label>
           <input
-            type="password"
+            type="current-password"
+            name="password"
+            required
+            onChange={this.handleChange}
+          />
+          <button type="submit" disabled={isLoading}>
+            Login
+          </button>
+        </form>
+
+
+        <h1>Create User</h1>
+        <form onSubmit={this.handleCreateUser}>
+        <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            autoFocus
+            required
+            onChange={this.handleChange}
+          />
+          <label htmlFor="displayName">DisplayName</label>
+          <input
+            type="text"
+            name="displayName"
+            autoFocus
+            required
+            onChange={this.handleChange}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="new-password"
             name="password"
             required
             onChange={this.handleChange}
@@ -52,5 +90,5 @@ export default connect(
     isLoading: auth.loginLoading,
     err: auth.loginError
   }),
-  { login }
+  { login, createUser }
 )(LoginForm);
