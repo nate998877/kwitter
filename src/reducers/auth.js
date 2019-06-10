@@ -22,13 +22,13 @@ export default (state = initialState, action) => {
     case LOGOUT:
       return {
         ...state,
-        logoutLoading: true,
-        logoutError: null
+        loginLoading: true,
+        loginError: null
       };
     case LOGOUT_SUCCESS:
-      return { ...state, logout: action.payload, logoutLoading: false };
+      return { ...state, login: action.payload, loginLoading: false };
     case LOGOUT_FAIL:
-      return { ...state, logoutError: action.payload, logoutLoading: false };
+      return { ...state, loginError: action.payload, loginLoading: false };
 
     default:
       return state;
