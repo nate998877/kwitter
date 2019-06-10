@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { connect } from "react-redux";
+import { logoutLoggedInUser as logout } from "../actions";
 
 class NavBar extends Component {
   state = { activeItem: 'home' }
 
+  componentDidMount(){
+    this.setState({...this.state, token:this.props.token})
+  }
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  handleLogout = (e, elem) => {
+    this.handleItemClick(e, elem)
+    e.preventDefault();
+    this.props.logout(this.state);
+  };
+
 
   render() {
     const { activeItem } = this.state
@@ -27,7 +40,7 @@ class NavBar extends Component {
             <Menu.Item
               name='Logout'
               active={activeItem === 'Logout'}
-              onClick={this.handleItemClick}
+              onClick={this.handleLogout}
             />
           </Menu.Menu>
         </Menu>
@@ -35,4 +48,15 @@ class NavBar extends Component {
     )
   }
 }
-export default NavBar; 
+
+
+export default connect(
+  ({ auth }) => {
+    console.log(auth)
+    return ({
+    isLoading: auth.loginLoading,
+    err: auth.loginError,
+    token: auth.login.token
+  })},
+  { logout }
+)(NavBar);
