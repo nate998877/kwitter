@@ -21,11 +21,7 @@ const like = likeData => dispatch => {
 
   return fetch(url, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${likeData.token}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
+    headers: jsonHeaders,
     body: JSON.stringify(likeData)
   })
     .then(handleJsonResponse)
@@ -49,10 +45,7 @@ const unlike = likeData => dispatch => {
   });
 
   return fetch(url + "/" + likeData.id, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${likeData.token}`
-    }
+    method: "DELETE"
   })
     .then(handleJsonResponse)
     .then(result => {

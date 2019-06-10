@@ -65,6 +65,6 @@ export const loginThenGoToUserProfile = loginData => dispatch => {
   return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
 };
 
-export const logoutLoggedInUser = loginData => dispatch => {
-  return dispatch(logout(loginData)).then(() => dispatch(push("/")));
+export const logoutLoggedInUser = () => dispatch => {
+  return dispatch(logout()).then(() => dispatch(push("/")));
 }
