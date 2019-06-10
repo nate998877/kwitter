@@ -2,22 +2,41 @@ import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
 import { createUserAction as createUser } from "../actions"
 import { connect } from "react-redux";
-
+import { Redirect } from 'react-router-dom'
 
 class NewUserForm extends Component {
     state = {
-        name: "",
         username: "",
-        password: "", 
-    }
+        displayName: "",
+        password: ""
+    };
+
     // to update handleChange and handleSubmit functions
-    handleChange = e => {if (e.key='Tab') this.setState({[e.target.name]: e.target.value });}
+    handleChange = (e) => { 
+      this.setState( {[e.target.name]: e.target.value } ) 
+    }
+
     handleSubmit = e => {
-      if(this.verifyPassword())
-      this.setState({[e.target.name]: e.target.value })};
+      let promise = this.props.createUser(this.state)
+      const target = e.target
+      e.preventDefault()
+      promise.then(()=>{
+        this.setState({ ...this.state, toggle:true})
+      }).catch(er=>{
+        console.log(er)
+        document.getElementById("username").setCustomValidity("Username already Taken")
+        target.reportValidity()
+        setTimeout(() => {
+          document.getElementById("username").setCustomValidity("")
+        }, 1000);
+      })
+    }
+
 
     verifyPassword(input){
-      return (input.value === document.getElementById("password").value) ?  input.setCustomValidity('Password Must be Matching.') : input.setCustomValidity('');
+      console.log(input.target.value)
+      console.log(document.getElementById("password").value)
+      return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
     }
 
     termsLink = (
@@ -25,23 +44,19 @@ class NewUserForm extends Component {
     )
     render() {
         return (
-        <div class="newUserForm-Container">
+        <div className="newUserForm-Container">
           <Form onSubmit={this.handleSubmit}>
               <h1>We are happy to add you as a secret squirrel!</h1>
             <Form.Group>
-              <Form.Input placeholder='Full Name' name='name' type="text" onChange={this.handleChange} required />
+              <Form.Input placeholder='username' name='username' type="text" onChange={this.handleChange} id="username" required />
             </Form.Group>
-            <Form.Input placeholder='Username' name='username'  type="text" onChange={this.handleChange} required />
+            <Form.Input placeholder='Display Name' name='displayName'  type="text" onChange={this.handleChange} required />
             <Form.Input placeholder='Enter new password' name='password' type="new password" onChange={this.handleChange} id="password" required />              
-            <Form.Input placeholder='Confirm Password' name='passwordCheck' type="new password" id="passwordCheck" required />              
-            <Form.TextArea label='About' type="text" placeholder='Tell us more about you...' />
-            <Form.Group>
-                <Form.Checkbox/>
-                <Form.Field label={this.termsLink}/>
-            </Form.Group>
+            <Form.Input placeholder='Confirm Password' name='passwordCheck' type="new password" onInput={this.verifyPassword} id="passwordCheck" required />
             <hr/>
             <Form.Button content='Submit' />
           </Form>
+          {this.state.toggle ? <Redirect to='/' /> : ""}
         </div>
         )
       }
