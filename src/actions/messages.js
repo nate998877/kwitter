@@ -70,11 +70,7 @@ const createMessage = messageData => dispatch => {
 
   return fetch(url, {
     method: "POST",
-<<<<<<< HEAD
-    headers: jsonHeaders,
-=======
     headers: {...jsonHeaders, Authorization: `Bearer ${messageData.token}`},
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
     body: JSON.stringify(messageData)
   })
     .then(handleJsonResponse)
@@ -99,12 +95,9 @@ const deleteMessage = messageData => dispatch => {
 
   return fetch(url + '/' + messageData.id, {
     method: "DELETE",
-<<<<<<< HEAD
-=======
     headers: {
       Authorization: `Bearer ${messageData.token}`
     }
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -131,8 +124,4 @@ export const createMessageAction = messageData => dispatch => {
 };
 export const deleteMessageAction = messageData => dispatch => {
   return dispatch(deleteMessage(messageData))
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 79d39ebed01117b37ca4d1c14db84f3da285261d
