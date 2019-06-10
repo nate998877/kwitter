@@ -50,13 +50,19 @@ const unlike = likeData => dispatch => {
 
   return fetch(url + "/" + likeData.id, {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> first-page-merged
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${likeData.token}`
     }
+<<<<<<< HEAD
 =======
     method: "DELETE"
 >>>>>>> DESIGN-profile_page
+=======
+>>>>>>> first-page-merged
   })
     .then(handleJsonResponse)
     .then(result => {
