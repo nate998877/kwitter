@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { LoginForm, UserProfile } from ".";
-import NewUserForm from "./NewUserForm";
+import { LoginForm, UserProfile, NewUserForm } from ".";
 
 class App extends Component {
   render() {
