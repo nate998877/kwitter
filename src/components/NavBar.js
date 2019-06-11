@@ -12,18 +12,17 @@ class NavBar extends Component {
     return (
       <div id="navBar-Container">
         <Menu pointing secondary>
-          <Menu.Item
-            name='Friends'
-            active={activeItem === 'Friends'}
-            onClick={this.handleItemClick}
-          />
           <Menu.Item name='Profile' active={activeItem === 'Profile'} onClick={this.handleItemClick} />
           <Menu.Item
             name='Acorn Feed'
             active={activeItem === 'Acorn Feed'}
             onClick={this.handleItemClick}
           />
-          <Menu.Item name='Profile' position="right" active={activeItem === 'Profile'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='Friends'
+            active={activeItem === 'Friends'}
+            onClick={this.handleItemClick}
+          />
           <Menu.Menu position='right'>
             <Menu.Item
               name='Logout'
