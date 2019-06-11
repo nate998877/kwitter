@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loginThenGoToUserProfile as login } from "../actions";
+import { getUserAction as getUser } from "../actions";
 import Spinner from "react-spinkit";
 import settings from "./settingsAcorn.png"
 import { Button, Grid} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 
-class UserProfile extends Component {
 
+class UserProfile extends Component {
+  state = {
+    users: {},
+
+  }
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -34,7 +38,9 @@ class UserProfile extends Component {
         <Grid columns={3} relaxed='very' doubling padded >
         <Grid.Column>
           {/* This is where the Account information */}
-          rflrfvewrfsd
+          <h2>{this.props.user.displayname}</h2>
+          {this.props.user.username}
+          {this.props.user.about}
         </Grid.Column>
         <Grid.Column>
           {/* Posts */}
@@ -52,5 +58,12 @@ class UserProfile extends Component {
     );
   }
 }
+export default connect(
+  ({ users }) => ({
+    isLoading: users.usersLoading,
+    err: users.usersError,
+    user: users.users.user
 
-export default UserProfile;
+  }),
+  { getUser }
+)(UserProfile);
