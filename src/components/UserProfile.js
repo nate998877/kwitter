@@ -9,15 +9,23 @@ import "semantic-ui-css/semantic.min.css";
 
 
 class UserProfile extends Component {
-  state = {
-    users: {},
-
-  }
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  componentDidMount(){
+    this.setState({users:this.props.getUser({id:this.props.id}).users})
+  }
 
   render() {
+    let information 
+    if(this.props.user){
+      information = (
+      <React.Fragment>
+      <h2>{this.props.user.user.displayname}</h2>
+      <p>{this.props.user.user.username}</p>
+      <p>{this.props.user.user.about}</p>
+      </React.Fragment>
+      )}
     const { isLoading, err } = this.props;
     return (
       <React.Fragment>
@@ -38,9 +46,7 @@ class UserProfile extends Component {
         <Grid columns={3} relaxed='very' doubling padded >
         <Grid.Column>
           {/* This is where the Account information */}
-          <h2>{this.props.user.displayname}</h2>
-          {this.props.user.username}
-          {this.props.user.about}
+          {information}
         </Grid.Column>
         <Grid.Column>
           {/* Posts */}
@@ -59,11 +65,11 @@ class UserProfile extends Component {
   }
 }
 export default connect(
-  ({ users }) => ({
+  ({ auth, users }) => ({
     isLoading: users.usersLoading,
     err: users.usersError,
-    user: users.users.user
-
+    user: users.users,
+    id: auth.login.id
   }),
   { getUser }
 )(UserProfile);
