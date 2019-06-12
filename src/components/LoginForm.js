@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { loginThenGoToUserProfile as login } from "../actions";
 import Spinner from "react-spinkit";
 import { Button, Form, Grid } from "semantic-ui-react";
+import Modus from "./Modus"
+import NewUserForm from "./NewUserForm"
 import "semantic-ui-css/semantic.min.css";
 import squirrel from "./Squirrel.png";
+
 
 class LoginForm extends Component {
   state = { username: "", password: "" };
@@ -17,6 +20,14 @@ class LoginForm extends Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  toggleModus = (e) =>{
+    if(this.state.displayModus){
+      this.setState({displayModus:false})
+    }else{
+      this.setState({displayModus:true})
+    }
+  }
 
   render() {
     const { isLoading, err } = this.props;
@@ -52,7 +63,7 @@ class LoginForm extends Component {
           <Button type="submit" disabled={isLoading}>
             Forgotten Password
           </Button>
-          <Button type="submit" disabled={isLoading}>
+          <Button type="submit" disabled={isLoading} onClick={this.toggleModus} id="createUser">
             Create Account
           </Button>
           </div>
@@ -65,6 +76,7 @@ class LoginForm extends Component {
             </div>
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
+        {this.state.displayModus ? <Modus payload={<NewUserForm />} removeModus={this.toggleModus} /> : ""}
       </React.Fragment>
     );
   }
