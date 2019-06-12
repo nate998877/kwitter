@@ -21,7 +21,7 @@ class NewUserForm extends Component {
       const target = e.target
       e.preventDefault()
       promise.then(()=>{
-        this.setState({ ...this.state, toggle:true})
+        this.props.displaySuccess()
       }).catch(er=>{
         console.log(er)
         document.getElementById("username").setCustomValidity("Username already Taken")
@@ -34,8 +34,6 @@ class NewUserForm extends Component {
 
 
     verifyPassword(input){
-      console.log(input.target.value)
-      console.log(document.getElementById("password").value)
       return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
     }
 
@@ -51,12 +49,11 @@ class NewUserForm extends Component {
               <Form.Input placeholder='username' name='username' type="text" onChange={this.handleChange} id="username" required />
             </Form.Group>
             <Form.Input placeholder='Display Name' name='displayName'  type="text" onChange={this.handleChange} required />
-            <Form.Input placeholder='Enter new password' name='password' type="new password" onChange={this.handleChange} id="password" required />              
-            <Form.Input placeholder='Confirm Password' name='passwordCheck' type="new password" onInput={this.verifyPassword} id="passwordCheck" required />
+            <Form.Input placeholder='Enter new password' name='password' type="password" onChange={this.handleChange} id="password" autocomplete="new-password" required />              
+            <Form.Input placeholder='Confirm Password' name='passwordCheck' type="password" onInput={this.verifyPassword} id="passwordCheck" autocomplete="new-password" required />
             <hr/>
             <Form.Button content='Submit' />
           </Form>
-          {this.state.toggle ? <Redirect to='/' /> : ""}
         </div>
         )
       }
