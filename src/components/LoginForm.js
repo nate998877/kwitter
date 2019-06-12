@@ -21,8 +21,12 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  popUpModus = () =>{
-    this.setState({displayModus:true})
+  toggleModus = (e) =>{
+    if(this.state.displayModus){
+      this.setState({displayModus:false})
+    }else{
+      this.setState({displayModus:true})
+    }
   }
 
   render() {
@@ -59,7 +63,7 @@ class LoginForm extends Component {
           <Button type="submit" disabled={isLoading}>
             Forgotten Password
           </Button>
-          <Button type="submit" disabled={isLoading} onClick={()=>{this.popUpModus()}}>
+          <Button type="submit" disabled={isLoading} onClick={this.toggleModus} id="createUser">
             Create Account
           </Button>
           </div>
@@ -73,8 +77,7 @@ class LoginForm extends Component {
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
 
-        {this.state.displayModus ? <Modus payload={<NewUserForm />}/> : ""}
-        {console.log(this.state)}
+        {this.state.displayModus ? <Modus payload={<NewUserForm />} removeModus={this.toggleModus} /> : ""}
       </React.Fragment>
     );
   }
