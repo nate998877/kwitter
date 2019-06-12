@@ -53,7 +53,6 @@ const getUser = userData => dispatch => {
   dispatch({
     type: GET_USER
   });
-  console.log(url + "/" + userData.id)
   return fetch(url + "/" + userData.id)
     .then(handleJsonResponse)
     .then(result => {
