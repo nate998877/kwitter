@@ -21,12 +21,20 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  toggleModus = (e) =>{
+  toggleModus = e =>{
     if(this.state.displayModus){
       this.setState({displayModus:false})
     }else{
       this.setState({displayModus:true})
     }
+  }
+
+  displaySuccess = e => {
+    this.setState({displayModus:false})
+    this.setState({successMessage:true})
+    setTimeout(() => {
+      this.setState({successMessage:false})
+    }, 3000);
   }
 
   render() {
@@ -76,7 +84,8 @@ class LoginForm extends Component {
             </div>
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
-        {this.state.displayModus ? <Modus payload={<NewUserForm />} removeModus={this.toggleModus} /> : ""}
+        {this.state.successMessage ? <Modus payload={<p> User Successfully Created </p>} /> : ""}
+        {this.state.displayModus ? <Modus payload={<NewUserForm displaySuccess={this.displaySuccess} />} removeModus={this.toggleModus} /> : ""}
       </React.Fragment>
     );
   }
