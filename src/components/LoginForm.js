@@ -76,7 +76,6 @@ class LoginForm extends Component {
             </div>
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
-
         {this.state.displayModus ? <Modus payload={<NewUserForm />} removeModus={this.toggleModus} /> : ""}
       </React.Fragment>
     );
