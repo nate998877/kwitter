@@ -13,13 +13,6 @@ class UserProfile extends Component {
   componentDidMount() {
     this.setState({ users: this.props.getUser({ id: this.props.id }).users });
   }
-  props = {
-    user: {
-      displayname: "",
-      username: "",
-      about: ""
-    }
-  };
   render() {
     const { isLoading, err } = this.props;
     return (
@@ -64,8 +57,8 @@ export default connect(
   ({ auth, users }) => ({
     isLoading: users.usersLoading,
     err: users.usersError,
-    user: users.users.user || '',
-    id: auth.login.id
+    user: users.users && users.users.user || {displayname:"",username:"",about:""},
+    id: auth.login && auth.login.id || 5
   }),
   { getUser }
 )(UserProfile);
