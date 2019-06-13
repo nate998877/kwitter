@@ -33,9 +33,17 @@ const getUsers = userData => dispatch => {
   dispatch({
     type: GET_USERS
   });
+  
 
-  const createdUrl = url  + userData.limit ? `?limit=${userData.limit}`: "" 
-                          + userData.offset ? `&offset=${userData.offset}`: "" ;
+  const limit = userData.limit ? `limit=${userData.limit}`: ""
+  const offset = userData.offset ? `offset=${userData.offset}`: ""
+  const renderArr = [limit, offset]
+  let createdUrl = url+"?"
+  for(let condition of renderArr){
+    if(condition){
+      createdUrl = createdUrl+condition+'&'
+    }
+  }
 
   return fetch(createdUrl)
     .then(handleJsonResponse)
