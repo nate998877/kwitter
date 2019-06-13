@@ -1,24 +1,64 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import { Redirect } from "react-router"
+import { Menu } from 'semantic-ui-react'
 import { connect } from "react-redux";
-import Spinner from "react-spinkit";
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
+import { logoutLoggedInUser as logout } from "../actions";
 
 class NavBar extends Component {
-    state = { username: "", password: "" };
+  state = { activeItem: 'home' }
 
-    handleLogin = e => {
-        e.preventDefault();
-        this.props.login(this.state);
-    };
+  componentDidMount(){
+    this.setState({...this.state, token:this.props.token})
+  }
 
-    handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-    render() {
-        const { isLoading, err } = this.props;
-        return <React.Fragment />;
-    }
-    }
+  handleLogout = (e, elem) => {
+    this.handleItemClick(e, elem)
+    e.preventDefault();
+    this.props.logout(this.state)
+    this.setState({logout:true})
+  }
 
+
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <div id="navBar-Container">
+        {this.state.logout ? <Redirect to="/" /> : ""}
+        <Menu pointing secondary>
+          <Menu.Item name='Profile' active={activeItem === 'Profile'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='Acorn Feed'
+            active={activeItem === 'Acorn Feed'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='Friends'
+            active={activeItem === 'Friends'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='Logout'
+              active={activeItem === 'Logout'}
+              onClick={this.handleLogout}
+            />
+          </Menu.Menu>
+        </Menu>
+      </div>
+    )
+  }
+}
+
+
+export default connect(
+  ({ auth }) => {
+    return ({
+    isLoading: auth.loginLoading,
+    err: auth.loginError,
+    token: auth.login && auth.login.token || null 
+  })},
+  { logout }
+)(NavBar);
