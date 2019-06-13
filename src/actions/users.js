@@ -44,8 +44,7 @@ const getUsers = userData => dispatch => {
       createdUrl = createdUrl+condition+'&'
     }
   }
-  }
-
+  
   return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
@@ -59,7 +58,7 @@ const getUsers = userData => dispatch => {
         dispatch({ type: GET_USERS_FAIL, payload: err.message })
       );
     });
-};
+  }
 
 const getUser = userData => dispatch => {
   //userData is an object {userId:useruserId}

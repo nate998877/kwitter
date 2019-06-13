@@ -6,7 +6,7 @@ import {
 } from "../actions";
 import Spinner from "react-spinkit";
 import settings from "./settingsAcorn.png";
-import { Button, Grid } from "semantic-ui-react";
+import { Button, Grid, Divider} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
 import pile from "./acorns.jpg";
@@ -71,7 +71,7 @@ class UserProfile extends Component {
               
           </div>
           <Grid columns={3} relaxed="very" padded id="infoColumns">
-            <Grid.Column>
+            <Grid.Column id="left">
               <div id="profileInfo">
                 {/* This is where the Account information */}
                 <h2>{this.props.user.displayname}</h2>
@@ -86,7 +86,7 @@ class UserProfile extends Component {
                 payload={this.state.messages || ""}
               />
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column id="right">
               {/* Post information */}
               Number of Acorns: 2
               <div id="piles">

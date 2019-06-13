@@ -65,6 +65,14 @@ body {
 #profileInfo{
   margin:auto !important
 }
+
+#left.column{
+  border-right: 1px solid !important
+}
+
+#right.column{
+  border-left: 1px solid !important
+}
 img {
   display: flex !important; 
 
