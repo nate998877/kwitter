@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { LoginForm, UserProfile } from ".";
 import NewUserForm from "./NewUserForm";
 import NewsFeedPage from "./NewsFeedPage";
+import NavBar from './NavBar'
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <Route exact path="/profile" render={() => <UserProfile />} />
         <Route exact path="/newuser" render={() => <NewUserForm />} />
         <Route exact path="/newsfeed" render={() => <NewsFeedPage/>} />
+        <Route exact path="/navbartest" render={() => <NavBar/>} />
       </Switch>
     );
   }

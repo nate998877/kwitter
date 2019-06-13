@@ -25,7 +25,7 @@ class NavBar extends Component {
       </Form>
     </Modal.Content>
     <Modal.Actions>
-      <Button  onClick={submitNewPost()} primary>
+      <Button  onClick={this.submitNewPost()} primary>
         Submit Chit!<Icon name='right chevron' />
       </Button>
     </Modal.Actions>
