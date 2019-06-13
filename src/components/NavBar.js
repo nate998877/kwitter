@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Menu, Image, Icon } from 'semantic-ui-react'
+import { Menu, Image, Icon, Modal, Form, Button } from 'semantic-ui-react'
 import {Route, Switch, Link} from 'react-router-dom'
 import UserProfile from './UserProfile';
 import acorn from './acorn.png'
+import NewChit from './NewChit';
+
 
 class NavBar extends Component {
   state = { activeItem: "Acorn Feed" }
@@ -11,6 +13,27 @@ class NavBar extends Component {
     this.setState({ activeItem: name })
     console.log(this.state)
   }
+  //will replace form below with the NewChit component
+  newChit = () => (
+    <Modal trigger={<Button onClick={this.newChit}> <img src={acorn} alt="acorn image"/>Test Chit Modal</Button>}>
+    <Modal.Header>Post a new chit! ...Whats on your mind?</Modal.Header>
+    <Modal.Content image>
+      <Image wrapped size='small' src={acorn}/>
+      <Form>
+        <Form.Input placeholder='Enter a Chit Topic' name='chitTopic' type="text"/>
+        <Form.TextArea placeholder="Insert Chit" />
+      </Form>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button  onClick={submitNewPost()} primary>
+        Submit Chit!<Icon name='right chevron' />
+      </Button>
+    </Modal.Actions>
+  </Modal>
+  )
+  submitNewPost = () => alert("Post submitted ")
+  
+
 
   render() {
     let { activeItem } = this.state
@@ -24,8 +47,8 @@ class NavBar extends Component {
             active={activeItem === 'Acorn Feed'}
             onClick={this.handleItemClick}
           />
-          <Menu.Item name='New Post' active={activeItem === 'New Post'} onClick={this.handleItemClick}>
-            <img src={acorn}/> New Chit
+          <Menu.Item name='New Post' active={activeItem === 'New Post'} onClick={this.newChit}>
+            {this.newChit()}
           </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item name='Profile'  href="/profile" active={activeItem === 'Profile'} onClick={this.handleItemClick} />
