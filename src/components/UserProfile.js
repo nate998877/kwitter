@@ -15,11 +15,11 @@ class UserProfile extends Component {
   componentDidMount() {
     console.log(this.props.id)
     this.setState({
-      users: this.props.getUser({ userId: this.props.id}).users,
+      users: this.props.getUser({ userId: this.props.id }).users,
       messages: this.props.getMessages({ limit: this.props.limit || 0, userId: this.props.id || 5 }).messages
     });
   }
-  
+
   render() {
     const { isLoading, err } = this.props;
     return (
