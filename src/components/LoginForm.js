@@ -14,7 +14,10 @@ class LoginForm extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    this.props.login(this.state);
+    let login = this.state
+    delete login.displayModus
+    delete login.displaySuccess
+    this.props.login(login);
   };
 
   handleChange = e => {
