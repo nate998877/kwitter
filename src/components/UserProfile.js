@@ -39,7 +39,8 @@ class UserProfile extends Component {
             </Grid.Column>
             <Grid.Column>
               {/* Posts */}
-              evf efverfdvd
+              <div id="personalPost">
+              </div>
             </Grid.Column>
             <Grid.Column>
               {/* Post information */}

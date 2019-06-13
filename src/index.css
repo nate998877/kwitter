@@ -15,6 +15,14 @@ body {
   display:flex !important;
   flex-direction: row !important;
 }
+
+#settings {
+  display:flex !important;
+  justify-content: first baseline !important;
+  position: relative !important;
+
+}
+
 #loginBackground {
   background-color: rgba(245, 245, 245, 0.479) !important;
   display:flex !important;
@@ -28,42 +36,29 @@ body {
 }
 #column{
   align-content:center !important;
+
+}
+#setPiles{
+  width:366px !important
 }
 #background {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  align-content: center !important;
   background-color: rgba(245, 245, 245, 0.479) !important;
-  margin: 4px !important;
-  max-width: 800px !important;
+  display:flex !important;
+  flex-direction: column !important; 
+  justify-content: center !important;
+  align-content: center !important;
+  max-width: 1000px !important;
+  margin-left: 3px !important;
+  margin: auto !important;
+  align-items: center !important;
+  
 }
 
 img {
-  display: flex !important;
+  display: flex !important; 
 
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-#modus{
-  z-index: 100;
-  position: absolute; top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255,255,255,0.5);
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.modus-card{
-  padding: 10px;
-  margin: auto;
-  width: 50%;
-  height: 50%;
-  border: 3px solid green;
-  background-color: white;
 }
