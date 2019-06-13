@@ -10,9 +10,11 @@ class UserProfile extends Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  
   componentDidMount() {
-    this.setState({ users: this.props.getUser({ id: this.props.id }).users });
+    this.setState({ users: this.props.getUser({ userId: this.props.id }).users });
   }
+
   render() {
     const { isLoading, err } = this.props;
     return (
