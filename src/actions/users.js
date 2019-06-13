@@ -44,7 +44,6 @@ const getUsers = userData => dispatch => {
       createdUrl = createdUrl+condition+'&'
     }
   }
-  
   return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
