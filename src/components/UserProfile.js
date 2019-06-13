@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUserAction as getUser } from "../actions";
+import { getUserAction as getUser, getMessagesAction as getMessages } from "../actions";
 import Spinner from "react-spinkit";
 import settings from "./settingsAcorn.png";
 import { Button, Grid } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import GenericScroll from "./GenericScroll"
+
 
 class UserProfile extends Component {
   handleChange = e => {
@@ -13,6 +15,11 @@ class UserProfile extends Component {
   
   componentDidMount() {
     this.setState({ users: this.props.getUser({ userId: this.props.id }).users });
+  }
+
+  sortMessages(){
+    this.props.getMessages({:this.props.id})
+
   }
 
   render() {
@@ -40,8 +47,9 @@ class UserProfile extends Component {
               <p>{this.props.user.about}</p>
             </Grid.Column>
             <Grid.Column>
-              {/* Posts */}
-              evf efverfdvd
+              <GenericScroll payload="">
+
+              </GenericScroll>
             </Grid.Column>
             <Grid.Column>
               {/* Post information */}
@@ -56,11 +64,12 @@ class UserProfile extends Component {
   }
 }
 export default connect(
-  ({ auth, users }) => ({
+  ({ auth, users, messages }) => ({
     isLoading: users.usersLoading,
     err: users.usersError,
     user: users.users && users.users.user || {displayname:"",username:"",about:""},
-    id: auth.login && auth.login.id || 5
+    id: auth.login && auth.login.id || 5,
+    messages: messages.message && messages.message.messages || [],
   }),
-  { getUser }
+  { getUser, getMessages }
 )(UserProfile);
