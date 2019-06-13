@@ -42,6 +42,7 @@ const getUsers = userData => dispatch => {
   for(let condition of renderArr){
     if(condition){
       createdUrl = createdUrl+condition+'&'
+    }
   }
 
 
