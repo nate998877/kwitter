@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUserAction as getUser } from "../actions";
+import getMessages from "./UserProfileInfo.js";
 import Spinner from "react-spinkit";
 import settings from "./settingsAcorn.png";
 import { Button, Grid } from "semantic-ui-react";
@@ -11,7 +12,10 @@ class UserProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   componentDidMount() {
-    this.setState({ users: this.props.getUser({ id: this.props.id }).users });
+    this.setState({ 
+      users: this.props.getUser({ id: this.props.id }).users,
+      messages: this.props.getMessages({ limit: this.props.limit || null, userid: this.props.userid || null }).messages
+    });
   }
   render() {
     const { isLoading, err } = this.props;
@@ -43,7 +47,7 @@ class UserProfile extends Component {
             </Grid.Column>
             <Grid.Column>
               {/* Post information */}
-              vfedfv ev
+              <p>{getMessages}</p>
             </Grid.Column>
           </Grid>
           {isLoading && <Spinner name="circle" color="blue" />}
@@ -58,7 +62,7 @@ export default connect(
     isLoading: users.usersLoading,
     err: users.usersError,
     user: users.users && users.users.user || {displayname:"",username:"",about:""},
-    id: auth.login && auth.login.id || 5
+    id: auth.login && auth.login.id || 5,
   }),
-  { getUser }
+  { getUser },
 )(UserProfile);

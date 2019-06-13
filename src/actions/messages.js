@@ -25,7 +25,7 @@ const getMessages = messageData => dispatch => {
     type: GET_MESSAGES
   });
 
-  return fetch(url + `?limit=${messageData.limit}&offset=${messageData.offset}`)
+  return fetch(url + `?limit=${messageData.limit}&offset=${messageData.offset}` )
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
