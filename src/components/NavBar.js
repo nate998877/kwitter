@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from "react-router"
 import { Menu } from 'semantic-ui-react'
 import { connect } from "react-redux";
 import { logoutLoggedInUser as logout } from "../actions";
@@ -15,8 +16,9 @@ class NavBar extends Component {
   handleLogout = (e, elem) => {
     this.handleItemClick(e, elem)
     e.preventDefault();
-    this.props.logout(this.state);
-  };
+    this.props.logout(this.state)
+    this.setState({logout:true})
+  }
 
 
   render() {
@@ -24,6 +26,7 @@ class NavBar extends Component {
 
     return (
       <div id="navBar-Container">
+        {this.state.logout ? <Redirect to="/" /> : ""}
         <Menu pointing secondary>
           <Menu.Item name='Profile' active={activeItem === 'Profile'} onClick={this.handleItemClick} />
           <Menu.Item
@@ -52,11 +55,10 @@ class NavBar extends Component {
 
 export default connect(
   ({ auth }) => {
-    console.log(auth)
     return ({
     isLoading: auth.loginLoading,
     err: auth.loginError,
-    token: auth.login.token
+    token: auth.login && auth.login.token || null 
   })},
   { logout }
 )(NavBar);

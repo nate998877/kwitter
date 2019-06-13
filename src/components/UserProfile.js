@@ -9,6 +9,7 @@ import settings from "./settingsAcorn.png";
 import { Button, Grid } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
+import NavBar from "./NavBar"
 import pile from "./acorns.jpg";
 import defaultSquirrel from "./profileSquirrel.jpeg";
 
@@ -56,6 +57,7 @@ class UserProfile extends Component {
           <br/>
         <div id="background">
           {/*NavBar will go here */}
+          <NavBar />
             <div id="profileHead">
               <div id="profilePic" alt="new" />
               {/*This is where the picture will go */}
