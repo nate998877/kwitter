@@ -18,9 +18,10 @@ body {
 
 #settings {
   display:flex !important;
-  justify-content: first baseline !important;
   position: relative !important;
-
+  justify-content: first baseline !important;
+  z-index: 200 !important;
+  padding-top: -100px !important;
 }
 
 #loginBackground {
@@ -34,7 +35,17 @@ body {
   align-items: flex-end !important;
   
 }
+/* #defaultProf{
+} */
+#profileHead{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  margin: 5px !important;
+
+}
 #column{
+  min-width: 333px !important;
   align-content:center !important;
 
 }
@@ -53,7 +64,9 @@ body {
   align-items: center !important;
   
 }
-
+#profileInfo{
+  margin:auto !important
+}
 img {
   display: flex !important; 
 
