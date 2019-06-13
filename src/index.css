@@ -22,6 +22,7 @@ body {
   justify-content: first baseline !important;
   z-index: 200 !important;
   padding-top: -100px !important;
+  margin-left: -480px !important
 }
 
 #loginBackground {
@@ -35,15 +36,15 @@ body {
   align-items: flex-end !important;
   
 }
-/* #defaultProf{
-} */
+#defaultProf{
+  margin-left: -480px !important
+}
 #profileHead{
   margin: 5px;
   padding-bottom: 50px;
 }
-#column{
+.column{
   min-width: 333px !important;
-  align-content:center !important;
 
 }
 #setPiles{
