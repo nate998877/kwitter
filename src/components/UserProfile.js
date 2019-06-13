@@ -1,18 +1,54 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUserAction as getUser } from "../actions";
+import { getUserAction as getUser, getMessagesAction as getMessages } from "../actions";
 import Spinner from "react-spinkit";
 import settings from "./settingsAcorn.png";
 import { Button, Grid } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import GenericScroll from "./GenericScroll"
+
 
 class UserProfile extends Component {
+  state = {}
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  
   componentDidMount() {
-    this.setState({ users: this.props.getUser({ id: this.props.id }).users });
+    if(!this.state.users){
+      this.setState({ users: this.props.getUser({ userId: this.props.id }).users });
+    }
+    this.messageObjToArr()
   }
+  
+  async messageObjToArr(){
+    let messages = await this.props.getMessages({userId:this.props.id})
+    messages = messages.payload.messages
+    let temparr = []
+    for(let obj of messages){
+      console.log(obj.id)
+      const value = (
+      <React.Fragment>
+        <li>
+        <p>
+          {obj.id}
+        </p>
+        <p>
+          {obj.text}
+        </p>
+        <p>
+          {obj.likes.length}
+        </p>
+        </li>
+      </React.Fragment>)
+
+      temparr.push(value)
+    }
+    console.log(temparr)
+    this.setState({messages:temparr})
+  }
+
+
   render() {
     const { isLoading, err } = this.props;
     return (
@@ -38,9 +74,10 @@ class UserProfile extends Component {
               <p>{this.props.user.about}</p>
             </Grid.Column>
             <Grid.Column>
-              {/* Posts */}
-              <div id="personalPost">
-              </div>
+              {console.log(this.state.messages)}
+              <GenericScroll key={this.state.messages} payload={this.state.messages || ""}>
+
+              </GenericScroll>
             </Grid.Column>
             <Grid.Column>
               {/* Post information */}
@@ -55,11 +92,12 @@ class UserProfile extends Component {
   }
 }
 export default connect(
-  ({ auth, users }) => ({
+  ({ auth, users, messages }) => ({
     isLoading: users.usersLoading,
     err: users.usersError,
     user: users.users && users.users.user || {displayname:"",username:"",about:""},
-    id: auth.login && auth.login.id || 5
+    id: auth.login && auth.login.id || 5,
+    messages: messages.message && messages.message.messages || [],
   }),
-  { getUser }
+  { getUser, getMessages }
 )(UserProfile);
