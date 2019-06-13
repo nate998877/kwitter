@@ -25,7 +25,11 @@ const getMessages = messageData => dispatch => {
     type: GET_MESSAGES
   });
 
-  return fetch(url + `?limit=${messageData.limit}&offset=${messageData.offset}`)
+  const createdUrl = url + messageData.limit ? `?limit=${messageData.limit}`: "" 
+                        + messageData.offset ? `&offset=${messageData.offset}`: "" 
+                        + messageData.id ? `&id=${messageData.id}`: "" ;
+
+  return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -46,7 +50,7 @@ const getMessage = messageData => dispatch => {
     type: GET_MESSAGE
   });
 
-  return fetch(url + "/" + messageData.id)
+  return fetch(url+"/"+messageData.id)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -92,7 +96,7 @@ const deleteMessage = messageData => dispatch => {
     type: DELETE_MESSAGE
   });
 
-  return fetch(url + '/' + messageData.id, {
+  return fetch(url+'/'+messageData.id, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${messageData.token}`
