@@ -9,18 +9,45 @@ import GenericScroll from "./GenericScroll"
 
 
 class UserProfile extends Component {
+  state = {}
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
   
   componentDidMount() {
-    this.setState({ users: this.props.getUser({ userId: this.props.id }).users });
+    if(!this.state.users){
+      this.setState({ users: this.props.getUser({ userId: this.props.id }).users });
+    }
+    this.messageObjToArr()
+  }
+  
+  async messageObjToArr(){
+    let messages = await this.props.getMessages({userId:this.props.id})
+    messages = messages.payload.messages
+    let temparr = []
+    for(let obj of messages){
+      console.log(obj.id)
+      const value = (
+      <React.Fragment>
+        <li>
+        <p>
+          {obj.id}
+        </p>
+        <p>
+          {obj.text}
+        </p>
+        <p>
+          {obj.likes.length}
+        </p>
+        </li>
+      </React.Fragment>)
+
+      temparr.push(value)
+    }
+    console.log(temparr)
+    this.setState({messages:temparr})
   }
 
-  sortMessages(){
-    this.props.getMessages({:this.props.id})
-
-  }
 
   render() {
     const { isLoading, err } = this.props;
@@ -47,7 +74,8 @@ class UserProfile extends Component {
               <p>{this.props.user.about}</p>
             </Grid.Column>
             <Grid.Column>
-              <GenericScroll payload="">
+              {console.log(this.state.messages)}
+              <GenericScroll key={this.state.messages} payload={this.state.messages || ""}>
 
               </GenericScroll>
             </Grid.Column>

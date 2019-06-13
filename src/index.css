@@ -67,3 +67,7 @@ code {
   border: 3px solid green;
   background-color: white;
 }
+
+li{
+  border: 4px solid black;
+}
