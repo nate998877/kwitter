@@ -38,11 +38,8 @@ body {
 /* #defaultProf{
 } */
 #profileHead{
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  margin: 5px !important;
-
+  margin: 5px;
+  padding-bottom: 50px;
 }
 #column{
   min-width: 333px !important;
@@ -98,4 +95,12 @@ code {
 
 li{
   border: 4px solid black;
+}
+
+#settings{
+  display: inline;
+  width: 100%;
+  position: absolute;
+  z-index: 5;
+  margin-top: -52px;
 }

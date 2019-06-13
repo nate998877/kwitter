@@ -60,11 +60,15 @@ class UserProfile extends Component {
               <div id="profilePic" alt="new" />
               {/*This is where the picture will go */}
               <img src={defaultSquirrel} id ="defaultProf" alt="new" />
+              
+              
               <div id="settings">
                 <Button type="submit" disabled={isLoading}>
                   <img src={settings} alt="new" />
                 </Button>
               </div>
+
+              
           </div>
           <Grid columns={3} relaxed="very" padded id="infoColumns">
             <Grid.Column>
