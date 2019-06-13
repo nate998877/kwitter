@@ -11,12 +11,15 @@ class UserProfile extends Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   componentDidMount() {
-    this.setState({ 
-      users: this.props.getUser({ id: this.props.id }).users,
-      messages: this.props.getMessages({ limit: this.props.limit || null, userid: this.props.userid || null }).messages
+    console.log(this.props.id)
+    this.setState({
+      users: this.props.getUser({ userId: this.props.id}).users,
+      messages: this.props.getMessages({ limit: this.props.limit || 0, userId: this.props.id || 5 }).messages
     });
   }
+  
   render() {
     const { isLoading, err } = this.props;
     return (
@@ -47,7 +50,7 @@ class UserProfile extends Component {
             </Grid.Column>
             <Grid.Column>
               {/* Post information */}
-              <p>{getMessages}</p>
+              {/* <p>{getMessages}</p> */}
             </Grid.Column>
           </Grid>
           {isLoading && <Spinner name="circle" color="blue" />}
@@ -64,5 +67,5 @@ export default connect(
     user: users.users && users.users.user || {displayname:"",username:"",about:""},
     id: auth.login && auth.login.id || 5,
   }),
-  { getUser },
+  { getUser, getMessages },
 )(UserProfile);

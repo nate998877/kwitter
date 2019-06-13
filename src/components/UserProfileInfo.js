@@ -5,7 +5,7 @@ import "semantic-ui-css/semantic.min.css";
 
 class UserProfileInfo extends Component {
     componentDidMount(){
-        this.setState({messages: this.props.getMessages({ limit: this.props.limit || null, userid: this.props.userId || null }).messages.messages
+        this.setState({messages: this.props.getMessages({ limit: this.props.limit || null, userId: this.props.userId || 5 }).messages.messages
         });
     }
     render(){

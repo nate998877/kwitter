@@ -1,4 +1,5 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
+import { create } from "domain";
 
 // action types
 export const GET_USERS                 = "GET_USERS";
@@ -33,7 +34,10 @@ const getUsers = userData => dispatch => {
     type: GET_USERS
   });
 
-  return fetch(url + `?limit=${userData.limit}&offset=${userData.offset}`)
+  const createdUrl = url  + userData.limit ? `?limit=${userData.limit}`: "" 
+                          + userData.offset ? `&offset=${userData.offset}`: "" ;
+
+  return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -49,11 +53,11 @@ const getUsers = userData => dispatch => {
 };
 
 const getUser = userData => dispatch => {
-  //userData is an object {id:userId}
+  //userData is an object {userId:useruserId}
   dispatch({
     type: GET_USER
   });
-  return fetch(url + "/" + userData.id)
+  return fetch(url+"/"+userData.userId)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -69,12 +73,14 @@ const getUser = userData => dispatch => {
 };
 
 const getUserPhoto = userData => dispatch => {
-  //userData is an object {id:userId}
+  //userData is an object {userId:useruserId}
   dispatch({
     type: GET_USER_PHOTO
   });
 
-  return fetch(url + `/${userData.id}/picture`)
+
+
+  return fetch(url+`/${userData.userId}/picture`)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -115,12 +121,12 @@ const createUser = userData => dispatch => {
 };
 
 const updateUserPhoto = userData => dispatch => {
-    //userData is an object {id:userId, picture}
+    //userData is an object {userId:useruserId, picture}
   dispatch({
     type: UPDATE_USER_PHOTO
   });
 
-  return fetch(url + `/${userData.id}/picture`, {
+  return fetch(url+`/${userData.userId}/picture`, {
     method: "PUT",
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -148,7 +154,7 @@ const updateUser = userData => dispatch => {
     type: UPDATE_USER
   });
 
-  return fetch(url + "/" + userData.ID, {
+  return fetch(url+"/"+userData.userId, {
     method: "patch",
     headers: {...jsonHeaders, Authorization: `Bearer ${userData.token}`},
     body: JSON.stringify(userData)
@@ -173,7 +179,7 @@ const deleteUser = userData => dispatch => {
     type: DELETE_USER
   });
 
-  return fetch(url + "/" + userData.ID, {
+  return fetch(url + "/" + userData.userId, {
     method: "DELETE",
     headers: {Authorization: `Bearer ${userData.token}`},
   })
