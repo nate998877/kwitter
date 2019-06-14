@@ -5,7 +5,7 @@ import {
   getMessagesAction as getMessages
 } from "../actions";
 import Spinner from "react-spinkit";
-import settings from "./settingsAcorn.png";
+// import settings from "..actions/settingsAcorn.png";
 import { Button, Grid, Divider} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
@@ -64,7 +64,7 @@ class UserProfile extends Component {
               
               <div id="settings">
                 <Button type="submit" disabled={isLoading}>
-                  <img src={settings} alt="new" />
+                  <img src="src/settingsAcorn.png" alt="new" />
                 </Button>
               </div>
 
