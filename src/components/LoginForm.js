@@ -64,20 +64,13 @@ class LoginForm extends Component {
             Forgotten Password
           </Button>
           <Modal
-          trigger={<Button type="submit" disabled={isLoading} onClick={this.toggleModal} id="createUser">Create Account</Button>}
-          open={this.state.displayModal}
-          size='medium'
-          onClick={this.toggleModal}
+          trigger={<Button type="submit" disabled={isLoading} id="createUser">Create Account</Button>}
+          size='small'
           >
             <Header content="New User Form"/>
             <Modal.Content onClick={(e)=>{e.stopPropagation()}}>
               <NewUserForm />
             </Modal.Content>
-            <Modal.Actions>
-              <Button onClick={this.toggleModal}>
-                Close Form
-              </Button>
-            </Modal.Actions>
           </Modal>
 
           </div>
