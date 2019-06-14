@@ -1,40 +1,56 @@
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
-// import { FORMERR } from "dns";
-// import { join } from "path";
+import { createUserAction as createUser } from "../actions"
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom'
 
 class NewUserForm extends Component {
-    // state=array of objects
     state = {
-        firstname: "", 
-        lastname: "",
-        email: "",
-        password: "", 
-        About: "", 
-    }
+        username: "",
+        displayName: "",
+        password: ""
+    };
+
     // to update handleChange and handleSubmit functions
-    handleChange = e => {if (e.key='Tab') this.setState({[e.target.name]: e.target.value });}
-    handleSubmit = e => {this.setState({[e.target.name]: e.target.value });console.log(this.state)};
+    handleChange = (e) => { 
+      this.setState( {[e.target.name]: e.target.value } ) 
+    }
+
+    handleSubmit = e => {
+      let promise = this.props.createUser(this.state)
+      const target = e.target
+      e.preventDefault()
+      promise.then(()=>{
+        this.props.displaySuccess()
+      }).catch(er=>{
+        console.log(er)
+        document.getElementById("username").setCustomValidity("Username already Taken")
+        target.reportValidity()
+        setTimeout(() => {
+          document.getElementById("username").setCustomValidity("")
+        }, 1000);
+      })
+    }
+
+
+    verifyPassword(input){
+      return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
+    }
 
     termsLink = (
         <p>I agree with the <a href="http://generator.lorem-ipsum.info/terms-and-conditions" alt="link to terms and conditions page">Terms and Conditions</a> </p>
     )
     render() {
         return (
-        <div class="newUserForm-Container">
+        <div className="newUserForm-Container">
           <Form onSubmit={this.handleSubmit}>
               <h1>We are happy to add you as a secret squirrel!</h1>
             <Form.Group>
-              <Form.Input placeholder='First Name' name='firstname' type="text" onChange={this.handleChange} />
-              <Form.Input placeholder='Last Name' name='lastname'  type="text" onChange={this.handleChange} />
+              <Form.Input placeholder='username' name='username' type="text" onChange={this.handleChange} id="username" required />
             </Form.Group>
-            <Form.Input placeholder='Email' name='email'  type="email" onChange={this.handleChange} />
-            <Form.Input placeholder='Enter new password' name='password' type="password" onChange={this.handleChange} />              
-            <Form.TextArea label='About' type="text" placeholder='Tell us more about you...' />
-            <Form.Group>
-                <Form.Checkbox/>
-                <Form.Field label={this.termsLink}/>
-            </Form.Group>
+            <Form.Input placeholder='Display Name' name='displayName'  type="text" onChange={this.handleChange} required />
+            <Form.Input placeholder='Enter new password' name='password' type="password" onChange={this.handleChange} id="password" autocomplete="new-password" required />              
+            <Form.Input placeholder='Confirm Password' name='passwordCheck' type="password" onInput={this.verifyPassword} id="passwordCheck" autocomplete="new-password" required />
             <hr/>
             <Form.Button content='Submit' />
           </Form>
@@ -44,4 +60,10 @@ class NewUserForm extends Component {
 
 }
 
-export default NewUserForm; 
+export default connect(
+  ({ users }) => ({
+    isLoading: users.usersLoading,
+    err: users.usersError
+  }),
+  { createUser }
+)(NewUserForm);

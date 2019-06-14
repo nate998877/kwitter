@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loginThenGoToUserProfile as login, createUserAction as createUser } from "../actions";
 import Spinner from "react-spinkit";
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
+import Modus from "./Modus"
+import NewUserForm from "./NewUserForm"
 import "semantic-ui-css/semantic.min.css";
 import squirrel from "./Squirrel.png";
+
 
 class LoginForm extends Component {
   state = { username: "", password: "" };
@@ -25,71 +28,58 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  toggleModus = e =>{
+    if(this.state.displayModus){
+      this.setState({displayModus:false})
+    }else{
+      this.setState({displayModus:true})
+    }
+  }
+
+  displaySuccess = e => {
+    this.setState({displayModus:false})
+    this.setState({successMessage:true})
+    setTimeout(() => {
+      this.setState({successMessage:false})
+    }, 3000);
+  }
+
   render() {
     const { isLoading, err } = this.props;
     return (
       <React.Fragment>
-        <Segment placeholder>
-          <Grid columns={2} relaxed='very' doubling centered >
-            <Grid.Column>
-              <h1>Login</h1>
-              <form onSubmit={this.handleLogin}>
-                <label htmlFor="username">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  autoFocus
-                  required
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                  type="current-password"
-                  name="password"
-                  required
-                  onChange={this.handleChange}
-                />
-                <button type="submit" disabled={isLoading}>
-                  Login
-          </button>
-        </form>
-
-
-              <h1>Create User</h1>
-              <form onSubmit={this.handleCreateUser}>
-                <label htmlFor="username">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  autoFocus
-                  required
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="displayName">DisplayName</label>
-                <input
-                  type="text"
-                  name="displayName"
-                  autoFocus
-                  required
-                  onChange={this.handleChange}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                  type="new-password"
-                  name="password"
-                  required
-                  onChange={this.handleChange}
-                />
-                <Button type="submit" disabled={isLoading}>
-                  Login
-        </Button>
-                <h2>Take part in the Chittering</h2>
-                <div id='buttonRow'>
-                  <Button type="submit" disabled={isLoading}>
-                    Forgotten Password
+        <br/>
+        <div id="loginBackground">
+        <Grid columns={2} relaxed='very' doubling padded>
+        <Grid.Column>
+        <h1>Login</h1>
+        <Form onSubmit={this.handleLogin}>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            autoFocus
+            required
+            onChange={this.handleChange}
+            />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            required
+            onChange={this.handleChange}
+            />
+        <Button type="submit" disabled={isLoading}>
+            Login
           </Button>
-                  <Button type="submit" disabled={isLoading}>
-                    Create Account
+        </Form>
+          <h2>Take part in the Chittering</h2>
+          <div id='buttonRow'>
+          <Button type="submit" disabled={isLoading}>
+            Forgotten Password
+          </Button>
+          <Button type="submit" disabled={isLoading} onClick={this.toggleModus} id="createUser">
+            Create Account
           </Button>
                 </div>
                 </form>
@@ -99,10 +89,11 @@ class LoginForm extends Component {
                 <img src={squirrel} alt="new" />
               </Grid.Column>
         </Grid>
-            <Divider vertical />
-            </Segment>
-          {isLoading && <Spinner name="circle" color="blue" />}
-          {err && <p style={{ color: "red" }}>{err}</p>}
+            </div>
+            {isLoading && <Spinner name="circle" color="blue" />}
+            {err && <p style={{ color: "red" }}>{err}</p>}
+        {this.state.successMessage ? <Modus payload={<p> User Successfully Created </p>} /> : ""}
+        {this.state.displayModus ? <Modus payload={<NewUserForm displaySuccess={this.displaySuccess} />} removeModus={this.toggleModus} /> : ""}
       </React.Fragment>
         );
       }
