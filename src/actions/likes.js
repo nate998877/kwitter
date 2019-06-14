@@ -1,5 +1,4 @@
-import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { push } from "connected-react-router";
+import { domain, handleJsonResponse } from "./constants";
 
 // action types
 export const LIKE = "LIKE";
