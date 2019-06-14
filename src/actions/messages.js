@@ -1,5 +1,4 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { push } from "connected-react-router";
 
 // action types
 export const GET_MESSAGES            = "GET_MESSAGES";
@@ -8,9 +7,9 @@ export const GET_MESSAGES_FAIL       = "GET_MESSAGES_FAIL";
 export const GET_MESSAGE             = "GET_MESSAGE";
 export const GET_MESSAGE_SUCCESS     = "GET_MESSAGE_SUCCESS";
 export const GET_MESSAGE_FAIL        = "GET_MESSAGE_FAIL";
-export const CREATE_MESSAGE         = "CREATE_MESSAGES";
-export const CREATE_MESSAGE_SUCCESS = "CREATE_MESSAGES_SUCCESS";
-export const CREATE_MESSAGE_FAIL    = "CREATE_MESSAGES_FAIL";
+export const CREATE_MESSAGE          = "CREATE_MESSAGES";
+export const CREATE_MESSAGE_SUCCESS  = "CREATE_MESSAGES_SUCCESS";
+export const CREATE_MESSAGE_FAIL     = "CREATE_MESSAGES_FAIL";
 export const DELETE_MESSAGE          = "DELETE_MESSAGE";
 export const DELETE_MESSAGE_SUCCESS  = "DELETE_MESSAGE_SUCCESS";
 export const DELETE_MESSAGE_FAIL     = "DELETE_MESSAGE_FAIL";
@@ -26,7 +25,18 @@ const getMessages = messageData => dispatch => {
     type: GET_MESSAGES
   });
 
-  return fetch(url + `?limit=${messageData.limit}&offset=${messageData.offset}`)
+  const limit = messageData.limit ? `limit=${messageData.limit}`: "" 
+  const offset = messageData.offset ? `offset=${messageData.offset}`: ""
+  const userId = messageData.userId ? `userId=${messageData.userId}`: ""
+  const renderArr = [limit, offset, userId]
+  let createdUrl = url+'?'
+  for(let item of renderArr){
+    if(item){
+      createdUrl = createdUrl+item+"&"
+    }
+  }
+
+  return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -47,7 +57,7 @@ const getMessage = messageData => dispatch => {
     type: GET_MESSAGE
   });
 
-  return fetch(url + "/" + messageData.id)
+  return fetch(url+"/"+messageData.id)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -93,7 +103,7 @@ const deleteMessage = messageData => dispatch => {
     type: DELETE_MESSAGE
   });
 
-  return fetch(url + '/' + messageData.id, {
+  return fetch(url+'/'+messageData.id, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${messageData.token}`
