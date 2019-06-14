@@ -16,7 +16,7 @@ class NavBar extends Component {
   //will replace form below with the NewChit component
   newChit = () => (
     <Modal trigger={<Button onClick={this.newChit}> <img src={acorn} alt="acorn image"/>Test Chit Modal</Button>}>
-    <Modal.Header>Post a new chit! ...Whats on your mind?</Modal.Header>
+    <Modal.Header>Whats on your mind? Submit new chit!</Modal.Header>
     <Modal.Content image>
       <Image wrapped size='small' src={acorn}/>
       <Form>
@@ -25,8 +25,8 @@ class NavBar extends Component {
       </Form>
     </Modal.Content>
     <Modal.Actions>
-      <Button  onClick={submitNewPost()} primary>
-        Submit Chit!<Icon name='right chevron' />
+      <Button  onClick={this.submitNewPost} primary>
+        Add New Chit!<Icon name='right chevron' />
       </Button>
     </Modal.Actions>
   </Modal>
