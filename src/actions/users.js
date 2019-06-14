@@ -42,10 +42,8 @@ const getUsers = userData => dispatch => {
   for(let condition of renderArr){
     if(condition){
       createdUrl = createdUrl+condition+'&'
+    }
   }
-  }
-
-
   return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
@@ -59,7 +57,7 @@ const getUsers = userData => dispatch => {
         dispatch({ type: GET_USERS_FAIL, payload: err.message })
       );
     });
-};
+  }
 
 const getUser = userData => dispatch => {
   //userData is an object {userId:useruserId}
@@ -105,6 +103,7 @@ const getUserPhoto = userData => dispatch => {
 };
 
 const createUser = userData => dispatch => {
+  console.log("CreateUser Action is Triggered")
   //userData is an object {username, displayname, password}
   dispatch({
     type: CREATE_USER
@@ -117,6 +116,7 @@ const createUser = userData => dispatch => {
   })
     .then(handleJsonResponse)
     .then(result => {
+      console.log(result)
       return dispatch({
         type: CREATE_USER_SUCCESS,
         payload: result

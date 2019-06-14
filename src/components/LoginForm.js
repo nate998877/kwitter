@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loginThenGoToUserProfile as login } from "../actions";
 import Spinner from "react-spinkit";
-import { Button, Form, Grid } from "semantic-ui-react";
+import { Button, Form, Grid, Modal, Header } from "semantic-ui-react";
 import Modus from "./Modus"
 import NewUserForm from "./NewUserForm"
 import "semantic-ui-css/semantic.min.css";
@@ -14,27 +14,19 @@ class LoginForm extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    this.props.login(this.state);
+    this.props.login({username:this.state.username, password:this.state.password});
   };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  toggleModus = e =>{
-    if(this.state.displayModus){
-      this.setState({displayModus:false})
+  toggleModal = e =>{
+    if(this.state.displayModal){
+      this.setState({displayModal:false})
     }else{
-      this.setState({displayModus:true})
+      this.setState({displayModal:true})
     }
-  }
-
-  displaySuccess = e => {
-    this.setState({displayModus:false})
-    this.setState({successMessage:true})
-    setTimeout(() => {
-      this.setState({successMessage:false})
-    }, 3000);
   }
 
   render() {
@@ -71,9 +63,16 @@ class LoginForm extends Component {
           <Button type="submit" disabled={isLoading}>
             Forgotten Password
           </Button>
-          <Button type="submit" disabled={isLoading} onClick={this.toggleModus} id="createUser">
-            Create Account
-          </Button>
+          <Modal
+          trigger={<Button type="submit" disabled={isLoading} id="createUser">Create Account</Button>}
+          size='small'
+          >
+            <Header content="New User Form"/>
+            <Modal.Content onClick={(e)=>{e.stopPropagation()}}>
+              <NewUserForm />
+            </Modal.Content>
+          </Modal>
+
           </div>
         </Grid.Column>
         <Grid.Column>
@@ -84,8 +83,6 @@ class LoginForm extends Component {
             </div>
             {isLoading && <Spinner name="circle" color="blue" />}
             {err && <p style={{ color: "red" }}>{err}</p>}
-        {this.state.successMessage ? <Modus payload={<p> User Successfully Created </p>} /> : ""}
-        {this.state.displayModus ? <Modus payload={<NewUserForm displaySuccess={this.displaySuccess} />} removeModus={this.toggleModus} /> : ""}
       </React.Fragment>
     );
   }

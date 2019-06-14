@@ -20,9 +20,7 @@ class NewUserForm extends Component {
       let promise = this.props.createUser(this.state)
       const target = e.target
       e.preventDefault()
-      promise.then(()=>{
-        this.props.displaySuccess()
-      }).catch(er=>{
+      promise.catch(er=>{
         console.log(er)
         document.getElementById("username").setCustomValidity("Username already Taken")
         target.reportValidity()
