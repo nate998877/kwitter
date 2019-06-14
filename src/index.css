@@ -125,3 +125,15 @@ li{
   z-index: 5;
   margin-top: -52px;
 }
+
+#profilePic, #profilePic2, #coverPic, #profileinfo2, #postInfo, #userPosts, #userFriendsPosts, #friendsPostInfo, .test-Col {
+  background-color: white ; 
+}
+#coverPic, #profilePic {
+  background-color: green; 
+}
+#break{
+  background-color: green; 
+  height: 5px; 
+  color: white; 
+}

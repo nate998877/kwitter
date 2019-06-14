@@ -3,7 +3,7 @@ import { Menu, Image, Icon, Modal, Form, Button } from 'semantic-ui-react'
 import {Route, Switch, Link} from 'react-router-dom'
 import UserProfile from './UserProfile';
 import acorn from './acorn.png'
-import NewChit from './NewChit';
+import NewChit from './NewChit'; 
 
 
 class NavBar extends Component {
