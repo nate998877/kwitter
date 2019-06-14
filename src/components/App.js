@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { LoginForm, UserProfile, NewUserForm } from ".";
+import { LoginForm, UserProfile, NewsFeedPage } from ".";
 
 class App extends Component {
   render() {
@@ -8,6 +8,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" render={() => <LoginForm />} />
         <Route exact path="/profile" render={() => <UserProfile />} />
+        <Route exact path="/feed" render={() => <NewsFeedPage />} />
       </Switch>
     );
   }
