@@ -3,7 +3,7 @@ import { Menu, Image, Icon, Modal, Form, Button } from 'semantic-ui-react'
 import {Route, Switch, Link} from 'react-router-dom'
 import UserProfile from './UserProfile';
 import acorn from './acorn.png'
-import NewChit from './NewChit';
+import NewChit from './NewChit'; 
 
 
 class NavBar extends Component {
@@ -15,7 +15,7 @@ class NavBar extends Component {
   }
   //will replace form below with the NewChit component
   newChit = () => (
-    <Modal trigger={<Button onClick={this.newChit}> <img src={acorn} alt="acorn image"/>Test Chit Modal</Button>}>
+    <Modal trigger={<Button onClick={this.newChit}> <img src={acorn} alt="acorn image"/></Button>}>
     <Modal.Header>Whats on your mind? Submit new chit!</Modal.Header>
     <Modal.Content image>
       <Image wrapped size='small' src={acorn}/>
