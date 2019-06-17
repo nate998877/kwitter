@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid, Image, Segment, SegmentGroup } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import NewChit from "./NewChit"
 
@@ -13,25 +13,35 @@ class NewsFeedPage extends Component {
                 <Grid.Row>
                     <NavBar/>
                 </Grid.Row>
-                <Grid id="newsFeedContainer" columns={3} divided>
-                    <Grid.Column id="left-Col"></Grid.Column>
-                    <Grid.Column id="mid-Col">
-                        <Grid.Row>
-                            <Grid columns={2} divided>
-                                <Grid.Column>
-                                    <Grid.Row><Image class="userPostProfileImage" src="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg"></Image></Grid.Row>
-                                    <Grid.Row><p>UserName</p></Grid.Row>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <p>#ACRO - "This is my first post.  Just want to say...YOLO!</p>
-                                </Grid.Column>
-
-                            </Grid>
-                        </Grid.Row>
-                        {/* delete "NewChit" line below - input here just for testing purposes */}
-                        <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
+                <Grid id="newsFeedContainer" columns={3} divided centered >
+                    <Grid.Column id="left-Col" width={4} >
+                        <SegmentGroup class="left-ColDash">
+                                <h2>TOP CHITS...</h2>
+                            <Segment vertical color="black" padded loading>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                            </Segment>
+                            <h2>TOP WORDS...</h2>
+                            <Segment vertical color="black" padded loading>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                            </Segment>
+                            <h2>TOP SQUIRRELS and ELITES...</h2>
+                            <Segment vertical color="black" padded loading>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                                <Grid.Row>[insert chit here]</Grid.Row>
+                            </Segment>
+                        </SegmentGroup>
                     </Grid.Column>
-                    <Grid.Column id="right-Col"></Grid.Column>
+                    <Grid.Column id="mid-Col" width={8} >
+                        <Grid.Row><h1>LATEST CHITS...</h1></Grid.Row>
+                        <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="UserName" postContent="This is my first chit"></NewChit>
+                    </Grid.Column>
+                    <Grid.Column id="right-Col" width={1} >
+                        <Grid.Row><h2>Visit secretsquirrels.com/ads <br/> to <br/> POST YOUR ADD HERE!</h2></Grid.Row>
+                    </Grid.Column>
                 </Grid>
 
             </React.Fragment>

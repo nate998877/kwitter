@@ -91,7 +91,7 @@ code {
   background-color: rgba(255, 255, 255, 0.698); 
 }
 #right-Col, #left-Col {
-  background-color: rgba(151, 143, 143, 0.466); 
+  background-color: rgba(151, 143, 143, 0.356); 
 }
 #navBar-Container{
   background-color: white;
@@ -138,6 +138,15 @@ li{
 #coverPic, #profilePic {
   background-color: rgb(13, 100, 13); 
 }
+#userProfileDiv, .userPostProfileImage{
+  height: 50x; 
+  width: 50px; 
+  
+}
+#chitPost-Container {
+  height: 100px; 
+}
+
 #break{
   background-color: green; 
   height: 5px; 
