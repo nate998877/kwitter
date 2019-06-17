@@ -12,7 +12,7 @@ import {  GET_USERS, GET_USERS_SUCCESS, GET_USERS_FAIL,
 const initialState = {
   usersLoading: false,
   users: null,
-  usersError: null
+  usersError: null,
 };
 
 export default (state = initialState, action) => {
