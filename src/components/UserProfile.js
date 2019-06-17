@@ -5,15 +5,9 @@ import {
   getMessagesAction as getMessages,
   updateUserPhotoAction as updateUserPhoto
 } from "../actions";
-<<<<<<< HEAD
 import Spinner from "react-spinkit";
-// import settings from "..actions/settingsAcorn.png";
-import { Button, Grid, Modal, Form, Header, Input } from "semantic-ui-react";
-=======
-// import Spinner from "react-spinkit";
+import { Button, Grid, Modal, Form, Header, Input, Image } from "semantic-ui-react";
 import settings from "./settingsAcorn.png";
-import { Button, Grid, Image} from "semantic-ui-react";
->>>>>>> 9d30d1945b51d4deb618a636a0cfb607070acaaf
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
 import defaultSquirrel from "./profileSquirrel.jpeg";
@@ -41,11 +35,7 @@ class UserProfile extends Component {
   componentDidMount() {
     if (!this.state.user) {
       this.setState({
-<<<<<<< HEAD
         user: this.props.getUser({ userId: this.props.id }).users
-=======
-        users: this.props.getUser({ userId: this.props.id }).users,
->>>>>>> 9d30d1945b51d4deb618a636a0cfb607070acaaf
       });
     }
     this.messageObjToArr();
@@ -109,7 +99,7 @@ class UserProfile extends Component {
                 </Form>
               </Modal.Content>
             </Modal>
-            
+
             </Grid.Row>
           </Grid.Column>
           <Grid.Column  id="coverPic"></Grid.Column>
