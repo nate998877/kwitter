@@ -140,7 +140,7 @@ const updateUserPhoto = userData => dispatch => {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${userData.token}`
   },
-    body: userData.picture
+    body: userData.form
   })
     .then(handleJsonResponse)
     .then(result => {

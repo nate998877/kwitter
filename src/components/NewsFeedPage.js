@@ -25,8 +25,6 @@ class NewsFeedPage extends Component {
                                 </Grid.Column>
                             </Grid>
                         </Grid.Row>
-                        {/* delete "NewChit" line below - input here just for testing purposes */}
-                        <Chit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post" />
                     </Grid.Column>
                     <Grid.Column id="right-Col"></Grid.Column>
                 </Grid>
