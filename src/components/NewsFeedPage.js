@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
 import NavBar from "./NavBar";
+import Scrolling from "./scroll"
 import NewChit from "./NewChit"
 
 class NewsFeedPage extends Component {
@@ -28,8 +29,6 @@ class NewsFeedPage extends Component {
 
                             </Grid>
                         </Grid.Row>
-                        {/* delete "NewChit" line below - input here just for testing purposes */}
-                        <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
                     </Grid.Column>
                     <Grid.Column id="right-Col"></Grid.Column>
                 </Grid>
