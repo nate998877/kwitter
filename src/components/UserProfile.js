@@ -5,13 +5,13 @@ import {
   getMessagesAction as getMessages
 } from "../actions";
 // import Spinner from "react-spinkit";
-import settings from "./settingsAcorn.png";
+import settings from "../pictures/settingsAcorn.png";
 import { Button, Grid, Image} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
-import defaultSquirrel from "./profileSquirrel.jpeg";
-import Nav from "./NavBar"
-import NewChit from "./NewChit";
+import defaultSquirrel from "../pictures/profileSquirrel.jpeg";
+// import Nav from "./NavBar"
+// import NewChit from "./NewChit";
 import NavBar from "./NavBar";
 
 class UserProfile extends Component {
@@ -52,7 +52,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { isLoading, err } = this.props;
+    const { isLoading } = this.props;
     return (
       <React.Fragment>
         {/* 1: navbar */}
