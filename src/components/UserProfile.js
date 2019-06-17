@@ -6,7 +6,7 @@ import {
 } from "../actions";
 import Spinner from "react-spinkit";
 // import settings from "..actions/settingsAcorn.png";
-import { Button, Grid, Divider} from "semantic-ui-react";
+import { Button, Grid, Modal, Form } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
 import pile from "./acorns.jpg";
@@ -25,6 +25,10 @@ class UserProfile extends Component {
       });
     }
     this.messageObjToArr();
+  }
+
+  uploadPhoto(){
+    this.setState({displayForm:true})
   }
 
   async messageObjToArr() {
@@ -60,8 +64,18 @@ class UserProfile extends Component {
               <div id="profilePic" alt="new" />
               {/*This is where the picture will go */}
               <img src={defaultSquirrel} id ="defaultProf" alt="new" />
-              
-              
+              <Modal
+              // open={this.}
+              >
+                <Modal.Header>
+                  Upload A Photo
+                </Modal.Header>
+                <Modal.Content>
+                  <Form onSubmit={this.uploadPhoto}>
+                    
+                  </Form>
+                </Modal.Content>
+              </Modal>
               <div id="settings">
                 <Button type="submit" disabled={isLoading}>
                   <img src="src/settingsAcorn.png" alt="new" />
@@ -88,7 +102,7 @@ class UserProfile extends Component {
             </Grid.Column>
             <Grid.Column id="right">
               {/* Post information */}
-              Number of Acorns: 2
+              Number of Acorns: Change ME To # of messages
               <div id="piles">
                 <img src={pile} alt="new" />
               </div>

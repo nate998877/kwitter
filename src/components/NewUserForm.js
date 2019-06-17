@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
 import { createUserAction as createUser } from "../actions"
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom'
 
 class NewUserForm extends Component {
     state = {
