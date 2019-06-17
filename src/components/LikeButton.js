@@ -25,11 +25,11 @@ class LikeButton extends Component {
 
   render() {
       return (
-        <div class="ui labeled button" tabindex="0">
-          <div class="ui button" onClick={this.toggleLike}>
-            <i class="heart icon"></i> Like
+        <div className="ui labeled button" tabindex="0">
+          <div className="ui button" onClick={this.toggleLike}>
+            <i className="heart icon"></i> Like
           </div>
-          <label class="ui basic label">
+          <label className="ui basic label">
             {this.props.message.likes.length}
           </label>
         </div>

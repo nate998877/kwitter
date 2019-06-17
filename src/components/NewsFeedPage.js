@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
-import NavBar from "./NavBar";
-import Chit from "./Chit"
+import {NavBar, Chit} from '.'
 
 class NewsFeedPage extends Component {
     state = {}

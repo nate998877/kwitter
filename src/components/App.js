@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import NewsFeedPage from "./NewsFeedPage"; 
-import { LoginForm, UserProfile, NewUserForm } from ".";
+import { LoginForm, UserProfile, NewUserForm, NewsFeedPage } from ".";
 
 class App extends Component {
   render() {

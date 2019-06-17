@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
 import acorn from '../pictures/acorn.png'
-import { Menu, Image, Icon, Modal, Form, Button } from 'semantic-ui-react'
-import CreateChit from "./CreateChit"
+import React, { Component } from 'react'
+import { Menu } from 'semantic-ui-react'
+import { CreateChit } from "."
 
 class NavBar extends Component {
-  state = { activeItem: "Acorn Feed" }
+  state = { activeItem: "Acorn Feed" } //This is the source of the defaulting to acorn feed error. To fix change to check for a this.props.currentwindow or something, then default to an errorcatch
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
@@ -18,7 +18,7 @@ class NavBar extends Component {
           <Menu.Item
             name='Acorn Feed'
             href="/newsfeed"
-            active={activeItem === 'Acorn Feed'} //This is the source of the defaulting to acorn feed error. To fix change to check for a this.props.currentwindow or something, then default to an errorcatch
+            active={activeItem === 'Acorn Feed'} 
             onClick={this.handleItemClick}
           />
           <Menu.Item name='New Post' active={activeItem === 'New Post'} >

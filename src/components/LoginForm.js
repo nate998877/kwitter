@@ -1,11 +1,10 @@
+import { Button, Form, Grid, Modal, Header } from "semantic-ui-react";
+import { loginThenGoToUserProfile as login } from "../actions";
+import squirrel from "../pictures/Squirrel.png";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loginThenGoToUserProfile as login } from "../actions";
 import Spinner from "react-spinkit";
-import { Button, Form, Grid, Modal, Header } from "semantic-ui-react";
-import NewUserForm from "./NewUserForm"
-import "semantic-ui-css/semantic.min.css";
-import squirrel from "../pictures/Squirrel.png";
+import { NewUserForm } from "."
 
 
 class LoginForm extends Component {
