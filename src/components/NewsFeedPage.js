@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, SegmentGroup } from "semantic-ui-react";
 import NavBar from "./NavBar";
+import Scrolling from "./scroll"
 import NewChit from "./NewChit"
 
 class NewsFeedPage extends Component {
     state = {}
 
     render(){
-        console.log("We are firing off")
         return(
             <React.Fragment>
                 <Grid.Row>
