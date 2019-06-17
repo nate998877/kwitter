@@ -91,21 +91,6 @@ class UserProfile extends Component {
             <Grid.Column>
             <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
             </Grid.Column>
-            <Grid.Column>
-            <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
-            </Grid.Column>
-            <Grid.Column>
-            <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
-            </Grid.Column>
-            <Grid.Column>
-            <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
-            </Grid.Column>
-            <Grid.Column>
-            <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
-            </Grid.Column>
-            <Grid.Column>
-            <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
-            </Grid.Column>
               {/* <Grid.Row><h1>Most "Digged" Chit...</h1></Grid.Row>
               <Grid.Column>
                 <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
