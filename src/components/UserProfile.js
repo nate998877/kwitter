@@ -6,7 +6,7 @@ import {
 } from "../actions";
 // import Spinner from "react-spinkit";
 import settings from "../pictures/settingsAcorn.png";
-import { Button, Grid, Image} from "semantic-ui-react";
+import { Button, Grid, Image } from "semantic-ui-react";
 import GenericScroll from "./GenericScroll";
 import defaultSquirrel from "../pictures/profileSquirrel.jpeg";
 import Chit from "./Chit";
@@ -54,42 +54,41 @@ class UserProfile extends Component {
       <React.Fragment>
         {/* 1: navbar */}
         <Grid.Row>
-          <NavBar/>
+          <NavBar />
         </Grid.Row>
 
         {/* 2. profile pic and cover pic area */}
-      <Grid columns={2} id="profilePic" >
-          <Grid.Column> 
+        <Grid columns={2} id="profilePic" >
+          <Grid.Column>
             <Grid.Row>
               <Image src={defaultSquirrel} alt="Profile Picture"></Image>
             </Grid.Row>
             <Grid.Row>
-              <Button type="submit" disabled={isLoading}><img src={settings} alt="new"/></Button>
+              <Button type="submit" disabled={isLoading}><img src={settings} alt="new" /></Button>
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column  id="coverPic"></Grid.Column>
-      </Grid>
+          <Grid.Column id="coverPic"></Grid.Column>
+        </Grid>
+        
         <div id="deepBackground">
 
-{/* 3. Left & Right panel: Profile stats and latest posts*/}
-      <Grid columns={2} id="profileinfo2" divided>
-           {/* 3a. Top panel: user profile stats / dashboard */}
-          <Grid.Column width={4}> 
-            <Grid.Row><h2>{this.props.user.displayname}</h2></Grid.Row>
-            <Grid.Row><p>{this.props.user.username}</p></Grid.Row>
-            <Grid.Row><p>{this.props.user.about}</p></Grid.Row>
-            <Grid.Row><p>Chit digs: {this.props.message}</p></Grid.Row>
-          </Grid.Column>
+          {/* 3. Left & Right panel: Profile stats and latest posts*/}
+          <Grid columns={2} id="profileinfo2" divided>
+            {/* 3a. Top panel: user profile stats / dashboard */}
+            <Grid.Column width={4}>
+              <Grid.Row><h2>{this.props.user.displayname}</h2></Grid.Row>
+              <Grid.Row><p>{this.props.user.username}</p></Grid.Row>
+              <Grid.Row><p>{this.props.user.about}</p></Grid.Row>
+              <Grid.Row><p>Chit digs: {this.props.message}</p></Grid.Row>
+            </Grid.Column>
 
             {/* 3b. user's post stats: latest posts and users' friends latest posts  */}
-          <Grid.Column width={6}>
-            <Grid.Row className="test-Col" column={2} divided="vertically">
-            <Grid.Column>
-            <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
+            <Grid.Column width={6}>
+              <Grid.Row className="test-Col" column={2} divided="vertically">
+                <Grid.Column />
+              </Grid.Row>
             </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-      </Grid>
+          </Grid>
         </div>
       </React.Fragment>
     );
