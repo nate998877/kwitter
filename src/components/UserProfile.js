@@ -20,8 +20,14 @@ class UserProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  formSubmit = () =>{
-    this.props.updateUserPhoto({userId: this.props.id,token: this.props.token, picture:this.state.userPhoto})
+  formSubmit = event =>{
+    event.preventDefault()
+    console.log(event.target)
+    const form = new FormData(event.target)
+    for(let each of form.entries()){
+      console.log(each)
+    }
+    this.props.updateUserPhoto({form:form, userId: this.props.id, token: this.props.token})
   }
 
   componentDidMount() {
@@ -81,10 +87,9 @@ class UserProfile extends Component {
               <Header content="New User Form" />
               <Modal.Content>
                 <Form onSubmit={this.formSubmit}>
-                    <label></label>
-                    <Input type="file" onChange={this.handleChange} name="userPhoto"></Input>
-                    <label></label>
-                    <Button type="submit"></Button>
+                    <Input type="file" name="picture"></Input>
+                    <br />
+                    <Button type="submit">uploadPhoto</Button>
                 </Form>
               </Modal.Content>
             </Modal>

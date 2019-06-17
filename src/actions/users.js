@@ -131,14 +131,15 @@ const updateUserPhoto = userData => dispatch => {
   dispatch({
     type: UPDATE_USER_PHOTO
   });
-  console.log(userData.picture)
+  console.log(userData.form)
   return fetch(url+`/${userData.userId}/picture`, {
     method: "PUT",
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${userData.token}`
   },
-    body: userData.picture
+    body: userData.form
   })
     .then(handleJsonResponse)
     .then(result => {
