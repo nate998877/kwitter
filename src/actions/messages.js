@@ -7,9 +7,9 @@ export const GET_MESSAGES_FAIL       = "GET_MESSAGES_FAIL";
 export const GET_MESSAGE             = "GET_MESSAGE";
 export const GET_MESSAGE_SUCCESS     = "GET_MESSAGE_SUCCESS";
 export const GET_MESSAGE_FAIL        = "GET_MESSAGE_FAIL";
-export const CREATE_MESSAGE         = "CREATE_MESSAGES";
-export const CREATE_MESSAGE_SUCCESS = "CREATE_MESSAGES_SUCCESS";
-export const CREATE_MESSAGE_FAIL    = "CREATE_MESSAGES_FAIL";
+export const CREATE_MESSAGE          = "CREATE_MESSAGES";
+export const CREATE_MESSAGE_SUCCESS  = "CREATE_MESSAGES_SUCCESS";
+export const CREATE_MESSAGE_FAIL     = "CREATE_MESSAGES_FAIL";
 export const DELETE_MESSAGE          = "DELETE_MESSAGE";
 export const DELETE_MESSAGE_SUCCESS  = "DELETE_MESSAGE_SUCCESS";
 export const DELETE_MESSAGE_FAIL     = "DELETE_MESSAGE_FAIL";
@@ -25,9 +25,16 @@ const getMessages = messageData => dispatch => {
     type: GET_MESSAGES
   });
 
-  const createdUrl = url + messageData.limit ? `?limit=${messageData.limit}`: "" 
-                        + messageData.offset ? `&offset=${messageData.offset}`: "" 
-                        + messageData.id ? `&id=${messageData.id}`: "" ;
+  const limit = messageData.limit ? `limit=${messageData.limit}`: "" 
+  const offset = messageData.offset ? `offset=${messageData.offset}`: ""
+  const userId = messageData.userId ? `userId=${messageData.userId}`: ""
+  const renderArr = [limit, offset, userId]
+  let createdUrl = url+'?'
+  for(let item of renderArr){
+    if(item){
+      createdUrl = createdUrl+item+"&"
+    }
+  }
 
   return fetch(createdUrl)
     .then(handleJsonResponse)
