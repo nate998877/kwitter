@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   getUserAction as getUser,
-  getMessagesAction as getMessages
+  getMessagesAction as getMessages,
+  updateUserPhotoAction as updateUserPhoto
 } from "../actions";
 import Spinner from "react-spinkit";
 // import settings from "..actions/settingsAcorn.png";
-import { Button, Grid, Modal, Form } from "semantic-ui-react";
+import { Button, Grid, Modal, Form, Header, Input } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
 import pile from "./acorns.jpg";
@@ -14,21 +15,27 @@ import defaultSquirrel from "./profileSquirrel.jpeg";
 
 class UserProfile extends Component {
   state = {};
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  formSubmit = () =>{
+    console.log("formfoo")
+    this.props.updateUserPhoto({userId: this.props.id,token: this.props.token, picture:this.state.userPhoto})
+  }
+
   componentDidMount() {
-    if (!this.state.users) {
+    if (!this.state.user) {
       this.setState({
-        users: this.props.getUser({ userId: this.props.id }).users
+        user: this.props.getUser({ userId: this.props.id }).users
       });
     }
     this.messageObjToArr();
   }
 
-  uploadPhoto(){
-    this.setState({displayForm:true})
+  uploadPhoto() {
+    this.setState({ displayForm: true })
   }
 
   async messageObjToArr() {
@@ -57,32 +64,36 @@ class UserProfile extends Component {
     const { isLoading, err } = this.props;
     return (
       <React.Fragment>
-          <br/>
+        <br />
         <div id="background">
           {/*NavBar will go here */}
-            <div id="profileHead">
-              <div id="profilePic" alt="new" />
-              {/*This is where the picture will go */}
-              <img src={defaultSquirrel} id ="defaultProf" alt="new" />
-              <Modal
-              // open={this.}
-              >
-                <Modal.Header>
-                  Upload A Photo
-                </Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.uploadPhoto}>
-                    
-                  </Form>
-                </Modal.Content>
-              </Modal>
-              <div id="settings">
+          <div id="profileHead">
+            <div id="profilePic" alt="new" />
+            {/*This is where the picture will go */}
+            <img src={defaultSquirrel} id="defaultProf" alt="new" />
+
+
+            <Modal
+              trigger={<div id="settings">
                 <Button type="submit" disabled={isLoading}>
                   <img src="src/settingsAcorn.png" alt="new" />
                 </Button>
-              </div>
+              </div>}
+              size='small'
+            >
+              <Header content="New User Form" />
+              <Modal.Content>
+                <Form onSubmit={this.formSubmit}>
+                    <label></label>
+                    <Input type="file" onChange={this.handleChange} name="userPhoto"></Input>
+                    <label></label>
+                    <Button type="submit"></Button>
+                </Form>
+              </Modal.Content>
+            </Modal>
 
-              
+
+
           </div>
           <Grid columns={3} relaxed="very" padded id="infoColumns">
             <Grid.Column id="left">
@@ -119,6 +130,7 @@ export default connect(
   ({ auth, users, messages }) => ({
     isLoading: users.usersLoading,
     err: users.usersError,
+    token: auth.login,
     user: (users.users && users.users.user) || {
       displayname: "",
       username: "",
@@ -127,5 +139,5 @@ export default connect(
     id: (auth.login && auth.login.id) || 5,
     messages: (messages.message && messages.message.messages) || []
   }),
-  { getUser, getMessages }
+  { getUser, getMessages, updateUserPhoto }
 )(UserProfile);

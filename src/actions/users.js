@@ -32,7 +32,6 @@ const getUsers = userData => dispatch => {
   dispatch({
     type: GET_USERS
   });
-  
 
   const limit = userData.limit ? `limit=${userData.limit}`: ""
   const offset = userData.offset ? `offset=${userData.offset}`: ""
@@ -102,7 +101,6 @@ const getUserPhoto = userData => dispatch => {
 };
 
 const createUser = userData => dispatch => {
-  console.log("CreateUser Action is Triggered")
   //userData is an object {username, displayname, password}
   dispatch({
     type: CREATE_USER
@@ -115,7 +113,6 @@ const createUser = userData => dispatch => {
   })
     .then(handleJsonResponse)
     .then(result => {
-      console.log(result)
       return dispatch({
         type: CREATE_USER_SUCCESS,
         payload: result
@@ -129,11 +126,12 @@ const createUser = userData => dispatch => {
 };
 
 const updateUserPhoto = userData => dispatch => {
+  console.log(userData)
     //userData is an object {userId:useruserId, picture}
   dispatch({
     type: UPDATE_USER_PHOTO
   });
-
+  console.log(userData.picture)
   return fetch(url+`/${userData.userId}/picture`, {
     method: "PUT",
     headers: {

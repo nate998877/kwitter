@@ -4,8 +4,7 @@ import { likePost as like, unlikePost as unlike} from "../actions"
 
 class LikeButton extends Component {
   toggleLike = ()=>{
-    let whichFetch = false
-    let likeid
+    let likeid, whichFetch = false
     if(this.props.message.likes.length){
       for(const like of this.props.message.likes){
         if(like.userId === this.props.userId){
