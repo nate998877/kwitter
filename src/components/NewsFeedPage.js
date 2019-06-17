@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
 import NavBar from "./NavBar";
+import Scrolling from "./scroll"
 
 class NewsFeedPage extends Component {
     state = {}
