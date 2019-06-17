@@ -29,7 +29,7 @@ class NavBar extends Component {
             <Menu.Item
               name='Logout'
               active={activeItem === 'Logout'}
-              onClick={this.handleItemClick}
+              onClick={this.handleLogout}
             />
           </Menu.Menu>
         </Menu>

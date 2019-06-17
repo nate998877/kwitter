@@ -10,7 +10,8 @@ class NewsFeedPage extends Component {
                 <Grid id="newsFeedContainer" columns={3} divided>
                     <Grid.Column id="left-Col" />
                     {/* each post needs two fetches a userphoto and a username fetch this should be handled in a general location */}
-                    <Grid.Column id="mid-Col"> {this.props.posts.map(post => {return( <Chit username={post.id} content={post.text} profileImage={post.image}/>)})} </Grid.Column>
+                    {/* {this.props.posts.map(post => {return( <Chit username={post.username} content={post.text} profileImage={post.image}/>)})} */}
+                    <Grid.Column id="mid-Col"> The map in the comment above goes here, but won't properly render until an array of post objects is passed to the newsfeedpage. post needs a username, text and image </Grid.Column>
                     <Grid.Column id="right-Col" />
                 </Grid>
             </React.Fragment>
