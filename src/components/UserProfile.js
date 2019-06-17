@@ -7,11 +7,9 @@ import {
 // import Spinner from "react-spinkit";
 import settings from "../pictures/settingsAcorn.png";
 import { Button, Grid, Image} from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
 import GenericScroll from "./GenericScroll";
 import defaultSquirrel from "../pictures/profileSquirrel.jpeg";
-// import Nav from "./NavBar"
-// import NewChit from "./NewChit";
+import Chit from "./Chit";
 import NavBar from "./NavBar";
 
 class UserProfile extends Component {
@@ -47,7 +45,6 @@ class UserProfile extends Component {
 
       temparr.push(value);
     }
-    console.log(temparr);
     this.setState({ messages: temparr });
   }
 
@@ -82,7 +79,6 @@ class UserProfile extends Component {
             <Grid.Row><p>{this.props.user.username}</p></Grid.Row>
             <Grid.Row><p>{this.props.user.about}</p></Grid.Row>
             <Grid.Row><p>Chit digs: {this.props.message}</p></Grid.Row>
-            {/* <Grid.Row><p>Chit destroys: </p></Grid.Row> */}
           </Grid.Column>
 
             {/* 3b. user's post stats: latest posts and users' friends latest posts  */}
@@ -91,24 +87,9 @@ class UserProfile extends Component {
             <Grid.Column>
             <GenericScroll  key={this.state.messages} payload={this.state.messages || ""}/>
             </Grid.Column>
-              {/* <Grid.Row><h1>Most "Digged" Chit...</h1></Grid.Row>
-              <Grid.Column>
-                <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
-                <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
-                
-              </Grid.Column>
-              <Grid.Row id="break"></Grid.Row>
-              <Grid.Row><h1>Friends List Most "Digged" Chit...</h1></Grid.Row>              
-              <Grid.Column>
-                <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
-                <NewChit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" userName="tamoya" postContent="Tamoya's post"></NewChit>
-              </Grid.Column>                   */}
             </Grid.Row>
           </Grid.Column>
       </Grid>
-    
-        {/* {isLoading && <Spinner name="circle" color="blue" />}
-        {err && <p style={{ color: "red" }}>{err}</p>} */}
         </div>
       </React.Fragment>
     );
