@@ -1,6 +1,8 @@
+import { logoutLoggedInUser as logout } from "../actions"
 import acorn from '../pictures/acorn.png'
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import { CreateChit } from "."
 
 class NavBar extends Component {
@@ -9,6 +11,14 @@ class NavBar extends Component {
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
   }
+
+  handleLogout = (e, elem) => {
+    this.handleItemClick(e, elem)
+    e.preventDefault();
+    this.props.logout(this.state)
+    this.setState({logout:true})
+  }
+
 
   render() {
     let { activeItem } = this.state
@@ -37,4 +47,6 @@ class NavBar extends Component {
     )
   }
 }
-export default NavBar; 
+export default connect(null,
+  { logout }
+  )(NavBar); 
