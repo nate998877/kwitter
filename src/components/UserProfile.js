@@ -21,7 +21,6 @@ class UserProfile extends Component {
   };
 
   formSubmit = () =>{
-    console.log("formfoo")
     this.props.updateUserPhoto({userId: this.props.id,token: this.props.token, picture:this.state.userPhoto})
   }
 
@@ -43,7 +42,6 @@ class UserProfile extends Component {
     messages = messages.payload.messages;
     let temparr = [];
     for (let obj of messages) {
-      console.log(obj.id);
       const value = (
         <React.Fragment>
           <li>
@@ -56,7 +54,6 @@ class UserProfile extends Component {
 
       temparr.push(value);
     }
-    console.log(temparr);
     this.setState({ messages: temparr });
   }
 
@@ -105,7 +102,6 @@ class UserProfile extends Component {
               </div>
             </Grid.Column>
             <Grid.Column>
-              {console.log(this.state.messages)}
               <GenericScroll
                 key={this.state.messages}
                 payload={this.state.messages || ""}

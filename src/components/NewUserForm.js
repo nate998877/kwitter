@@ -20,7 +20,6 @@ class NewUserForm extends Component {
       const target = e.target
       e.preventDefault()
       promise.catch(er=>{
-        console.log(er)
         document.getElementById("username").setCustomValidity("Username already Taken")
         target.reportValidity()
         setTimeout(() => {
