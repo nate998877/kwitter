@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Grid, Image, Button } from "semantic-ui-react";
+import { UpdatePhotoModal } from "."
 class ProfilePic extends Component {
   render() {
     return (
@@ -11,7 +12,7 @@ class ProfilePic extends Component {
             <Image src={this.props.defaultSquirrel} alt="Profile Picture" />
           </Grid.Row>
           <Grid.Row>
-            <Button type="submit" disabled={this.props.isLoading}><img src={this.props.settings} alt="new" /></Button>
+            <UpdatePhotoModal isLoading={this.props.isLoading} />
           </Grid.Row>
         </Grid.Column>
         <Grid.Column id="coverPic" />
