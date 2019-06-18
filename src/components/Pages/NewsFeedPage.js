@@ -24,6 +24,7 @@ class NewsFeedPage extends Component {
             <Grid.Row><h2>Visit secretsquirrels.com/ads <br/> to <br/> POST YOUR ADD HERE!</h2></Grid.Row>
           </Grid.Column>
         </Grid>
+        <div id="background" />
       </React.Fragment>
     )
     }

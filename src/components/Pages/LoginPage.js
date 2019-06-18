@@ -16,7 +16,6 @@ class LoginPage extends Component {
     const { isLoading, err } = this.props;
     return (
       <React.Fragment>
-        <div id="loginBackground">
           <Grid columns={2} relaxed='very' doubling padded>
             <Grid.Column>
               <LoginForm isLoading={isLoading}/>
@@ -27,9 +26,9 @@ class LoginPage extends Component {
               <img src={squirrel} alt="new" />
             </Grid.Column>
           </Grid>
-        </div>
         {isLoading && <Spinner name="circle" color="blue" />}
         {err && <p style={{ color: "red" }}>{err}</p>}
+        <div id="loginBackground" />
       </React.Fragment>
     );
   }

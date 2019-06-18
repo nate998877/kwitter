@@ -43,6 +43,7 @@ const getUsers = userData => dispatch => {
       createdUrl = createdUrl+condition+'&'
     }
   }
+
   return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
@@ -128,17 +129,20 @@ const createUser = userData => dispatch => {
     });
 };
 
-const updateUserPhoto = userData => dispatch => {
+const updateUserPhoto = userData => (dispatch, getState) => {
     //userData is an object {userId:useruserId, picture}
   dispatch({
     type: UPDATE_USER_PHOTO
   });
 
-  return fetch(url+`/${userData.userId}/picture`, {
+  const userId = getState().auth.login.id
+  const token = getState().auth.login.token
+
+  return fetch(url+`/${userId}/picture`, {
     method: "PUT",
     headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${userData.token}`
+      // 'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`
   },
     body: userData.form
   })
