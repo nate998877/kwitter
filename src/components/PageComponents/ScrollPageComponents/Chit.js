@@ -8,22 +8,21 @@ import { Grid, Image } from "semantic-ui-react";
 //Also needs to return a post ID (time/data stamp?)
 //example syntax to call Chit: <Chit profileImage="http://3rdpartyservicesofflorida.com/wp-content/uploads/2015/03/blank-profile.jpg" username="tamoya" postContent="Tamoya's post"></Chit>
 class Chit extends Component {
-    render() {
-        return (
-            <Grid.Row>
-                <Grid columns={2} divided>
-                    <Grid.Column>
-                        <Grid.Row><Image className="userPostProfileImage" src={this.props.profileImage} alt="Profile_Image"></Image></Grid.Row>
-                        <Grid.Row><p>{this.props.username}</p></Grid.Row>
-                        <Grid.Row><p>{new Date().toDateString()}</p></Grid.Row>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <p>{this.props.content}</p>
-                    </Grid.Column>
-                </Grid>
-            </Grid.Row>
-        )
-    }
+  render() {
+    return(
+      <Grid.Row>
+        <Grid id="chitPost-Container" columns={2} divided >
+          <Grid.Column width={2}>
+            <Grid.Row><div id="userProfileDiv"><Image class="userPostProfileImage" src={this.props.profileImage} alt="Profile_Image"></Image></div></Grid.Row>
+          </Grid.Column>
+          <Grid.Column width={7}>
+            <Grid.Row>{this.props.userName} | {new Date().toDateString()}</Grid.Row>
+            <Grid.Row><p>{this.props.postContent}</p></Grid.Row>
+          </Grid.Column>
+        </Grid>
+      </Grid.Row>
+    )
+  }
 }
 
 export default Chit; 

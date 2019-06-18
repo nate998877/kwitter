@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { likePost as like, unlikePost as unlike} from "../actions"
+import { likePost as like, unlikePost as unlike} from "../../../actions"
 
 class LikeButton extends Component {
   toggleLike = ()=>{

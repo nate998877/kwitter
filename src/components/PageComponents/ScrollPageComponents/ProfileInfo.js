@@ -1,7 +1,7 @@
 
 
 import React, { Component } from "react";
-import { Grid, } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 class ProfileInfo extends Component {
   render() {

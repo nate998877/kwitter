@@ -39,22 +39,25 @@ body {
   margin-left: 3px !important;
   margin: auto !important;
   align-items: flex-end !important;
-  
 }
+
 #defaultProf{
   margin-left: -480px !important
 }
+
 #profileHead{
   margin: 5px;
   padding-bottom: 50px;
 }
+
 .column{
   min-width: 333px !important;
-
 }
+
 #setPiles{
   width:366px !important
 }
+
 #background {
   background-color: rgba(245, 245, 245, 0.479) !important;
   display:flex !important;
@@ -65,8 +68,8 @@ body {
   margin-left: 3px !important;
   margin: auto !important;
   align-items: center !important;
-  
 }
+
 #profileInfo{
   margin:auto !important
 }
@@ -80,8 +83,8 @@ body {
 }
 img {
   display: flex !important; 
-
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -90,34 +93,16 @@ code {
 #mid-Col{
   background-color: rgba(255, 255, 255, 0.698); 
 }
+
 #right-Col, #left-Col {
-  background-color: rgba(151, 143, 143, 0.466); 
+  background-color: rgba(151, 143, 143, 0.356); 
 }
+
 #navBar-Container{
   background-color: white;
   margin-bottom: 15px;  
 }
 
-
-#modus{
-  z-index: 100;
-  position: absolute; top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255,255,255,0.5);
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.modus-card{
-  padding: 10px;
-  margin: auto;
-  width: 50%;
-  height: 50%;
-  border: 3px solid green;
-  background-color: white;
-}
 
 li{
   border: 2px solid black;
@@ -135,9 +120,21 @@ li{
 #profilePic, #profilePic2, #coverPic, #profileinfo2, #postInfo, #userPosts, #userFriendsPosts, #friendsPostInfo, .test-Col {
   background-color: rgba(255, 255, 255, 0.397) ; 
 }
+
 #coverPic, #profilePic {
   background-color: rgb(13, 100, 13); 
 }
+
+#userProfileDiv, .userPostProfileImage{
+  height: 50x; 
+  width: 50px; 
+  
+}
+
+#chitPost-Container {
+  height: 100px; 
+}
+
 #break{
   background-color: green; 
   height: 5px; 

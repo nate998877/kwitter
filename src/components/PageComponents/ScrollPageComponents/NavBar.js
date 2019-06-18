@@ -1,5 +1,5 @@
-import { logoutLoggedInUser as logout } from "../actions"
-import acorn from '../pictures/acorn.png'
+import { logoutLoggedInUser as logout } from "../../../actions"
+import acorn from '../../../pictures/acorn.png'
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'

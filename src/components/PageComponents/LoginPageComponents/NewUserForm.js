@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
-import { createUserAction as createUser } from "../actions"
+import { createUserAction as createUser } from "../../../actions"
 import { connect } from "react-redux";
 
 class NewUserForm extends Component {
@@ -10,11 +10,11 @@ class NewUserForm extends Component {
         password: ""
     };
 
-    // to update handleChange and handleSubmit functions
     handleChange = (e) => { 
       this.setState( {[e.target.name]: e.target.value } ) 
     }
 
+    //This handle submit should be changed to a semantic-ui form valdiation. Don't ask me how to do that ¯\_(ツ)_/¯
     handleSubmit = e => {
       let promise = this.props.createUser(this.state)
       const target = e.target
@@ -29,14 +29,10 @@ class NewUserForm extends Component {
       })
     }
 
-
     verifyPassword(input){
       return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
     }
 
-    termsLink = (
-        <p>I agree with the <a href="http://generator.lorem-ipsum.info/terms-and-conditions" alt="link to terms and conditions page">Terms and Conditions</a> </p>
-    )
     render() {
         return (
         <div className="newUserForm-Container">

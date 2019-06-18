@@ -3,16 +3,16 @@ import { connect } from "react-redux";
 import {
   getUserAction as getUser,
   getMessagesAction as getMessages
-} from "../actions";
+} from "../../actions";
 // import Spinner from "react-spinkit";
-import settings from "../pictures/settingsAcorn.png";
-import { Button, Grid, Image } from "semantic-ui-react";
-import defaultSquirrel from "../pictures/profileSquirrel.jpeg";
-import Chit from "./Chit";
-import NavBar from "./NavBar";
-import ProfilePic from "./ProfilePic"
-import ProfileInfo from "./ProfileInfo"
-import PostInfo from "./PostInfo"
+import settings from "../../pictures/settingsAcorn.png";
+import { Grid } from "semantic-ui-react";
+import defaultSquirrel from "../../pictures/profileSquirrel.jpeg";
+import Chit from "../PageComponents/ScrollPageComponents/Chit";
+import NavBar from "../PageComponents/ScrollPageComponents/NavBar";
+import ProfilePic from "../PageComponents/ScrollPageComponents/ProfilePic"
+import ProfileInfo from "../PageComponents/ScrollPageComponents/ProfileInfo"
+import PostInfo from "../PageComponents/ScrollPageComponents/PostInfo"
 
 class UserProfile extends Component {
   state = {};
