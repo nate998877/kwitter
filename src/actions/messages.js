@@ -81,7 +81,7 @@ const createMessage = messageData => dispatch => {
   return fetch(url, {
     method: "POST",
     headers: {...jsonHeaders, Authorization: `Bearer ${messageData.token}`},
-    body: JSON.stringify(messageData)
+    body: JSON.stringify({text:messageData.text})
   })
     .then(handleJsonResponse)
     .then(result => {

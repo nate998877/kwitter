@@ -33,10 +33,9 @@ class UserProfile extends Component {
         <NavBar />
         <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings} />
         <UpdatePhotoModal isLoading={isLoading}/>
-        <div id="deepBackground" />
         <Grid columns={2} id="profileinfo2" divided>
           <ProfileInfo user={this.props.user} message={this.props.message} />
-          <PostInfo />
+          <PostInfo/>
         </Grid>
       </React.Fragment>
     );
