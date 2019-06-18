@@ -27,7 +27,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { isLoading } = this.props;
+    const { user, isLoading } = this.props;
     return (
       <React.Fragment>
         <NavBar />
@@ -35,7 +35,7 @@ class UserProfile extends Component {
         <UpdatePhotoModal isLoading={isLoading}/>
         <div id="deepBackground" />
         <Grid columns={2} id="profileinfo2" divided>
-          <ProfileInfo user={this.props.user} message={this.props.message} />
+          <ProfileInfo user={user} message={this.props.message} />
           <PostInfo />
         </Grid>
       </React.Fragment>
@@ -47,7 +47,6 @@ class UserProfile extends Component {
 export default connect(
   ({ auth, users, messages }) => ({
     isLoading: users.usersLoading,
-    err: users.usersError,
     user: (users.users && users.users.user) || {
       displayname: "",
       username: "",
