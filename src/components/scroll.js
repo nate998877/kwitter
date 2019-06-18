@@ -1,4 +1,4 @@
-// import React from "react";
+// import React, {Component} from "react";
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
 // class Scrolling extends Component {
