@@ -19,7 +19,8 @@ export const DELETE_MESSAGE_FAIL     = "DELETE_MESSAGE_FAIL";
 const url = domain + "/messages";
 
 // action creators
-const getMessages = messageData => dispatch => {
+export const getMessages = messageData => dispatch => {
+  console.log('get Messages is running');
   //messageData should be an object with {limit:limit, offset:offset}
   dispatch({
     type: GET_MESSAGES
@@ -135,3 +136,4 @@ export const createMessageAction = messageData => dispatch => {
 export const deleteMessageAction = messageData => dispatch => {
   return dispatch(deleteMessage(messageData))
 };
+ 
