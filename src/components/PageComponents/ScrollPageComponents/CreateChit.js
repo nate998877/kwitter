@@ -17,6 +17,9 @@ class CreateChit extends Component {
     this.setState({text:e.target.value})
 
   }
+  //this.props.messages.likes.length
+  //this.props.messages.length
+
   render() {
     return (
       <Modal trigger={<Button > <img src={this.props.acorn} alt="acorn" /></Button>}>

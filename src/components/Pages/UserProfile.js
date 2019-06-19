@@ -27,7 +27,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { isLoading } = this.props;
+    const { user, isLoading } = this.props;
     return (
       <React.Fragment>
         <NavBar />
@@ -40,6 +40,7 @@ class UserProfile extends Component {
           <Grid.Column width={8} style = {{border: '1px solid black'}}>
           <ChitGroups><Chit/></ChitGroups>
           </Grid.Column>
+          <PostInfo />
         </Grid>
       </React.Fragment>
     );
@@ -50,7 +51,6 @@ class UserProfile extends Component {
 export default connect(
   ({ auth, users, messages }) => ({
     isLoading: users.usersLoading,
-    err: users.usersError,
     user: (users.users && users.users.user) || {
       displayname: "",
       username: "",

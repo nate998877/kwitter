@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
 import { UpdatePhotoModal } from "."
+import acorn from "../../../pictures/acorn.png"
 class ProfilePic extends Component {
   render() {
     return (
@@ -12,7 +13,7 @@ class ProfilePic extends Component {
             <Image src={this.props.defaultSquirrel} alt="Profile Picture" />
           </Grid.Row>
           <Grid.Row>
-            <UpdatePhotoModal isLoading={this.props.isLoading} />
+            <UpdatePhotoModal isLoading={this.props.isLoading} acorn={acorn} />
           </Grid.Row>
         </Grid.Column>
         <Grid.Column id="coverPic" />

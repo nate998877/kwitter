@@ -9,6 +9,7 @@ class ProfilePic extends Component {
     event.preventDefault()
     console.log(event.target)
     const form = new FormData(event.target)
+    console.log(form)
     for(let each of form.entries()){
       console.log(each)
     }
@@ -19,8 +20,8 @@ class ProfilePic extends Component {
     return (
       <Modal
       trigger={<div id="settings">
-        <Button type="submit" disabled={this.props.isLoading}>
-          <img src="src/settingsAcorn.png" alt="new" />
+        <Button id="temp" type="submit" disabled={this.props.isLoading}>
+          <img src={this.props.acorn} alt="new" />
         </Button>
       </div>}
       size='small'
@@ -38,6 +39,8 @@ class ProfilePic extends Component {
   }
 }
 
-export default connect( null,
+export default connect(({ })=>{
+
+},
   { updateUserPhoto }
   )(ProfilePic)
