@@ -1,20 +1,18 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
 
 // action types
-export const GET_MESSAGES            = "GET_MESSAGES";
-export const GET_MESSAGES_SUCCESS    = "GET_MESSAGES_SUCCESS";
-export const GET_MESSAGES_FAIL       = "GET_MESSAGES_FAIL";
-export const GET_MESSAGE             = "GET_MESSAGE";
-export const GET_MESSAGE_SUCCESS     = "GET_MESSAGE_SUCCESS";
-export const GET_MESSAGE_FAIL        = "GET_MESSAGE_FAIL";
-export const CREATE_MESSAGE          = "CREATE_MESSAGES";
-export const CREATE_MESSAGE_SUCCESS  = "CREATE_MESSAGES_SUCCESS";
-export const CREATE_MESSAGE_FAIL     = "CREATE_MESSAGES_FAIL";
-export const DELETE_MESSAGE          = "DELETE_MESSAGE";
-export const DELETE_MESSAGE_SUCCESS  = "DELETE_MESSAGE_SUCCESS";
-export const DELETE_MESSAGE_FAIL     = "DELETE_MESSAGE_FAIL";
-
-
+export const GET_MESSAGES = "GET_MESSAGES";
+export const GET_MESSAGES_SUCCESS = "GET_MESSAGES_SUCCESS";
+export const GET_MESSAGES_FAIL = "GET_MESSAGES_FAIL";
+export const GET_MESSAGE = "GET_MESSAGE";
+export const GET_MESSAGE_SUCCESS = "GET_MESSAGE_SUCCESS";
+export const GET_MESSAGE_FAIL = "GET_MESSAGE_FAIL";
+export const CREATE_MESSAGE = "CREATE_MESSAGES";
+export const CREATE_MESSAGE_SUCCESS = "CREATE_MESSAGES_SUCCESS";
+export const CREATE_MESSAGE_FAIL = "CREATE_MESSAGES_FAIL";
+export const DELETE_MESSAGE = "DELETE_MESSAGE";
+export const DELETE_MESSAGE_SUCCESS = "DELETE_MESSAGE_SUCCESS";
+export const DELETE_MESSAGE_FAIL = "DELETE_MESSAGE_FAIL";
 
 const url = domain + "/messages";
 
@@ -25,19 +23,19 @@ const getMessages = messageData => dispatch => {
     type: GET_MESSAGES
   });
 
-  // const limit = messageData.limit ? `limit=${messageData.limit}`: "" 
+  // const limit = messageData.limit ? `limit=${messageData.limit}`: ""
   // const offset = messageData.offset ? `offset=${messageData.offset}`: ""
-  // const userId = messageData.userId ? `userId=${messageData.userId}`: ""
+  const userId = messageData ? `userId=${messageData.userId}` : "";
   // const renderArr = [limit, offset, userId]
-  // let createdUrl = url+'?'
+  let createdUrl = url + "?";
 
   // for(let item of renderArr){
-  //   if(item){
-  //     createdUrl = createdUrl+item+"&"
-  //   }
+  if (userId) {
+    createdUrl = createdUrl + userId;
+  }
   // }
 
-  return fetch(url)
+  return fetch(createdUrl)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -58,7 +56,7 @@ const getMessage = messageData => dispatch => {
     type: GET_MESSAGE
   });
 
-  return fetch(url+"/"+messageData.id)
+  return fetch(url + "/" + messageData.id)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -81,8 +79,8 @@ const createMessage = messageData => dispatch => {
 
   return fetch(url, {
     method: "POST",
-    headers: {...jsonHeaders, Authorization: `Bearer ${messageData.token}`},
-    body: JSON.stringify({text:messageData.text})
+    headers: { ...jsonHeaders, Authorization: `Bearer ${messageData.token}` },
+    body: JSON.stringify({ text: messageData.text })
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -104,7 +102,7 @@ const deleteMessage = messageData => dispatch => {
     type: DELETE_MESSAGE
   });
 
-  return fetch(url+'/'+messageData.id, {
+  return fetch(url + "/" + messageData.id, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${messageData.token}`
@@ -125,14 +123,14 @@ const deleteMessage = messageData => dispatch => {
 };
 
 export const getMessagesAction = messageData => dispatch => {
-  return dispatch(getMessages(messageData))
+  return dispatch(getMessages(messageData));
 };
 export const getMessageAction = messageData => dispatch => {
-  return dispatch(getMessage(messageData))
+  return dispatch(getMessage(messageData));
 };
 export const createMessageAction = messageData => dispatch => {
-  return dispatch(createMessage(messageData))
+  return dispatch(createMessage(messageData));
 };
 export const deleteMessageAction = messageData => dispatch => {
-  return dispatch(deleteMessage(messageData))
+  return dispatch(deleteMessage(messageData));
 };

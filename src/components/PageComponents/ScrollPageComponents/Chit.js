@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
+import moment from 'moment'
 //pulled this from the feed page and broke it out to its own component, so when you call it, it renders same format
 //for every new post
 //purpose: when new post is needed, and you click on button, this is called and returns template for new post.
@@ -26,7 +27,7 @@ class Chit extends Component {
           </Grid.Column>
           <Grid.Column width={7}>
             <Grid.Row>
-              {this.props.userName} | {new Date().toDateString()}
+              {this.props.userName} | {moment(this.props.time).fromNow()}
             </Grid.Row>
             <Grid.Row>
               <p>{this.props.text}</p>
