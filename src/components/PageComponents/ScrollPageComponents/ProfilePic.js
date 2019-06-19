@@ -1,7 +1,7 @@
 
 
 import React, { Component } from "react";
-import { Grid, Image, Button } from "semantic-ui-react";
+import { Grid, Image } from "semantic-ui-react";
 import { UpdatePhotoModal } from "."
 class ProfilePic extends Component {
   render() {

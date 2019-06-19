@@ -1,4 +1,4 @@
-import { ProfileInfo, ProfilePic, PostInfo, NavBar, Chit, UpdatePhotoModal } from "../PageComponents/ScrollPageComponents"
+import { ProfileInfo, ProfilePic, PostInfo, NavBar, Chit, UpdatePhotoModal, ChitGroups } from "../PageComponents/ScrollPageComponents"
 import defaultSquirrel from "../../pictures/profileSquirrel.jpeg";
 import settings from "../../pictures/settingsAcorn.png";
 import { Grid } from "semantic-ui-react";
@@ -31,11 +31,15 @@ class UserProfile extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings} />
-        <UpdatePhotoModal isLoading={isLoading}/>
+        <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings}/>
+
         <Grid columns={2} id="profileinfo2" divided>
+        <Grid.Column width={1}>
           <ProfileInfo user={this.props.user} message={this.props.message} />
-          <PostInfo/>
+        </Grid.Column>
+          <Grid.Column width={8} style = {{border: '1px solid black'}}>
+          <ChitGroups><Chit/></ChitGroups>
+          </Grid.Column>
         </Grid>
       </React.Fragment>
     );

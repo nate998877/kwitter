@@ -25,18 +25,19 @@ const getMessages = messageData => dispatch => {
     type: GET_MESSAGES
   });
 
-  const limit = messageData.limit ? `limit=${messageData.limit}`: "" 
-  const offset = messageData.offset ? `offset=${messageData.offset}`: ""
-  const userId = messageData.userId ? `userId=${messageData.userId}`: ""
-  const renderArr = [limit, offset, userId]
-  let createdUrl = url+'?'
-  for(let item of renderArr){
-    if(item){
-      createdUrl = createdUrl+item+"&"
-    }
-  }
+  // const limit = messageData.limit ? `limit=${messageData.limit}`: "" 
+  // const offset = messageData.offset ? `offset=${messageData.offset}`: ""
+  // const userId = messageData.userId ? `userId=${messageData.userId}`: ""
+  // const renderArr = [limit, offset, userId]
+  // let createdUrl = url+'?'
 
-  return fetch(createdUrl)
+  // for(let item of renderArr){
+  //   if(item){
+  //     createdUrl = createdUrl+item+"&"
+  //   }
+  // }
+
+  return fetch(url)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({

@@ -23,9 +23,9 @@ class CreateChit extends Component {
         <Modal.Header>Whats on your mind? Submit new chit!</Modal.Header>
         <Modal.Content image>
           <Image wrapped size='small' src={this.props.acorn} />
-          <Form onSubmit={this.submitNewPost}>
+          <Form onSubmit={this.submitNewPost} style={{width:'700px'}}>
             {/* <Form.Input placeholder='Enter a Chit Topic' name='chitTopic' type="text" /> */}
-            <Form.TextArea placeholder="Insert Chit" style={{width:'100%'}} onChange={this.handleChange}/>
+            <Form.TextArea placeholder="Insert Chit"  onChange={this.handleChange}/>
           <Button type='submit' primary>
             Add New Chit!<Icon name='right chevron' />
           </Button>
