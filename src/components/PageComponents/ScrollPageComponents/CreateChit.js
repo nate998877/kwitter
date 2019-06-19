@@ -7,9 +7,6 @@ class CreateChit extends Component {
     alert("Post submitted ")
   }
 
-  //this.props.messages.likes.length
-  //this.props.messages.length
-
   render() {
     return (
       <Modal trigger={<Button > <img src={this.props.acorn} alt="acorn" /></Button>}>

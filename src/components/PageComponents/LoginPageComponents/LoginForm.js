@@ -18,7 +18,7 @@ class LoginForm extends Component {
       <React.Fragment>
         <h1>Login</h1>
         <Form onSubmit={this.handleLogin}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username" >Username</label>
           <input
             type="text"
             name="username"
