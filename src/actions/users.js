@@ -79,16 +79,15 @@ const getUser = userData => dispatch => {
     });
 };
 
-const getUserPhoto = userData => dispatch => {
+const getUserPhoto = userData => (dispatch, getState) => {
   //userData is an object {userId:useruserId}
   dispatch({
     type: GET_USER_PHOTO
   });
+  const store = getState()
+  let userId = store.auth.login && store.auth.login.id || 5
 
-
-
-  return fetch(url+`/${userData.userId}/picture`)
-    .then(handleJsonResponse)
+  return fetch(url+`/${userId}/picture`)
     .then(result => {
       return dispatch({
         type: GET_USER_PHOTO_SUCCESS,

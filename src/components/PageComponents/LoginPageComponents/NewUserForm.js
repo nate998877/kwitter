@@ -14,7 +14,6 @@ class NewUserForm extends Component {
       this.setState( {[e.target.name]: e.target.value } ) 
     }
 
-    //This handle submit should be changed to a semantic-ui form valdiation. Don't ask me how to do that ¯\_(ツ)_/¯
     handleSubmit = e => {
       let promise = this.props.createUser(this.state)
       const target = e.target
