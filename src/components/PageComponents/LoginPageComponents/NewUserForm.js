@@ -19,6 +19,7 @@ class NewUserForm extends Component {
       let promise = this.props.createUser(this.state)
       const target = e.target
       e.preventDefault()
+      this.props.onClose()
       promise.catch(er=>{
         console.log(er)
         document.getElementById("username").setCustomValidity("Username already Taken")
@@ -32,6 +33,8 @@ class NewUserForm extends Component {
     verifyPassword(input){
       return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
     }
+
+    handleClose = () => this.setState({ modalOpen: false })
 
     render() {
         return (
