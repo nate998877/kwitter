@@ -13,7 +13,12 @@ class ButtonRow extends Component {
   }
   
   handleOpen = () => this.setState({ modalOpen: true })
-  handleClose = () => {
+  handleClose = (event) => {
+    if(event){
+      this.setState({ modalOpen: false })
+    } 
+
+    //This waits 
     setTimeout(
       ()=>{if(this.state.isUserFormValid) this.setState({ modalOpen: false })}, 
       300
