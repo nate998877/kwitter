@@ -19,24 +19,20 @@ export const DELETE_MESSAGE_FAIL     = "DELETE_MESSAGE_FAIL";
 const url = domain + "/messages";
 
 // action creators
-const getMessages = messageData => dispatch => {
+const getMessages = (messageData = {}) => dispatch => {
   //messageData should be an object with {limit:limit, offset:offset}
   dispatch({
     type: GET_MESSAGES
   });
-
-  const limit = messageData.limit ? `limit=${messageData.limit}`: "" 
-  const offset = messageData.offset ? `offset=${messageData.offset}`: ""
-  const userId = messageData.userId ? `userId=${messageData.userId}`: ""
-  const renderArr = [limit, offset, userId]
-  let createdUrl = url+'?'
-  for(let item of renderArr){
-    if(item){
-      createdUrl = createdUrl+item+"&"
-    }
+  let optionalParams = new URLSearchParams()
+  const keys = messageData.keys()
+  const values = messageData.values()
+  for(let i = 0; i < keys.length-1; i++){
+    optionalParams.append(keys[i], values[i])
   }
+  let constructedURL = keys.length ? url+"?"+optionalParams : url
 
-  return fetch(createdUrl)
+  return fetch(constructedURL)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
