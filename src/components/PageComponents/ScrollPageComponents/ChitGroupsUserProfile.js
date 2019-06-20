@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Chit from "./Chit";
 import { getMessagesAction } from "../../../actions/messages";
 
-//good luck implementing this
 class ChitGroupsUserProfile extends Component {
   componentDidMount() {
     this.props.getMessagesAction({userId: this.props.userid});
