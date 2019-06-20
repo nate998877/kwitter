@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
+import { getUserPhotoAction } from "../../../actions"
+import { LikeButton } from "."
 import moment from 'moment'
 //pulled this from the feed page and broke it out to its own component, so when you call it, it renders same format
 //for every new post
@@ -12,15 +14,14 @@ class Chit extends Component {
   render() {
     return (
       <Grid.Row>
-        <Grid id="chitPost-Container" columns={2} divided style={{border:'1px dotted black', display:'flex'}}>
+        <Grid className="chitPost-Container" columns={2} divided >
           <Grid.Column width={2} >
             <Grid.Row>
               <div id="userProfileDiv">
                 <Image
                   class="userPostProfileImage"
                   src={this.props.pictureLocation}
-                  alt=" "
-                  
+                  alt=""
                 />
               </div>
             </Grid.Row>
@@ -32,6 +33,7 @@ class Chit extends Component {
             <Grid.Row>
               <p>{this.props.text}</p>
             </Grid.Row>
+            <LikeButton message={this.props.self} render={this.props.reRenderMessages}/>
           </Grid.Column>
         </Grid>
       </Grid.Row>
@@ -39,4 +41,4 @@ class Chit extends Component {
   }
 }
 
-export default Chit;
+export default Chit

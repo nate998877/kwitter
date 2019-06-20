@@ -136,3 +136,9 @@ li{
 #temp{
   z-index: 10;
 }
+
+.chitPost-Container{
+  display: flex;
+  border: 1px dotted black;
+  margin: 10px;
+}

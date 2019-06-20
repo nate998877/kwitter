@@ -10,6 +10,7 @@ class ChitGroups extends Component {
     this.props.getUsersAction();
     this.props.getMessagesAction();
   }
+
   render() {
     return (
       // <SegmentGroup className="left-ColDash">
@@ -32,11 +33,15 @@ class ChitGroups extends Component {
       //   </Segment>
       // </SegmentGroup >
       <React.Fragment>
-        {this.props.chits
-          ? this.props.chits.messages.map(chit => (
-              <Chit key={chit.id} text={chit.text} time={chit.createdAt}/>
-            ))
-          : ""}
+        {this.props.chits}
+        {this.props.chits}
+        {this.props.chits}
+        {this.props.chits}
+        {this.props.chits}
+        {this.props.chits}
+        {this.props.chits}
+        {this.props.chits.map(chit => (
+              <Chit key={chit.id} text={chit.text} time={chit.createdAt} self={chit} reRenderMessages={this.props.getMessagesAction} />))}
       </React.Fragment>
     );
   }
@@ -45,7 +50,7 @@ class ChitGroups extends Component {
 export default connect(
   ({ messages, users }) => {
     return {
-      chits: messages.message,
+      chits: messages.message && messages.message.messages || [],
       users: users.userId,
     };
   },

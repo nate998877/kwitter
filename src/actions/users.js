@@ -85,8 +85,6 @@ const getUserPhoto = userData => dispatch => {
     type: GET_USER_PHOTO
   });
 
-
-
   return fetch(url+`/${userData.userId}/picture`)
     .then(handleJsonResponse)
     .then(result => {

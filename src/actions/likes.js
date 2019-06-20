@@ -17,7 +17,6 @@ const like = likeData => dispatch => {
   dispatch({
     type: LIKE
   });
-  console.log(likeData)
   return fetch(url, {
     method: "POST",
     headers: {
@@ -25,7 +24,7 @@ const like = likeData => dispatch => {
       "Content-Type": "application/json",
       Accept: "application/json"
     },
-    body: JSON.stringify(likeData.id)
+    body: JSON.stringify({messageId:likeData.id})
   })
     .then(handleJsonResponse)
     .then(result => {

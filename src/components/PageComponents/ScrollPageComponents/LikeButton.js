@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { likePost as like, unlikePost as unlike} from "../../../actions"
+import { likePost as like, unlikePost as unlike, getMessageAction as getMessage} from "../../../actions"
 
 class LikeButton extends Component {
-  toggleLike = ()=>{
+  toggleLike = () =>{
+    console.log(this.props.message)
     let whichFetch = false
     let likeid
     if(this.props.message.likes.length){
       for(const like of this.props.message.likes){
-        if(like.userId === this.props.userId){
+        if(like.userId === this.props.message.userId){
           whichFetch = true;
           likeid = like.id
         }
@@ -17,24 +18,33 @@ class LikeButton extends Component {
     if(whichFetch){
       const send = { token:this.props.token, id:likeid }
       this.props.unlike(send)
+      .then(()=>{
+        this.props.render()
+      })
     }else{
       const send = { token:this.props.token, id:this.props.message.id }
       this.props.like(send)
+      .then(()=>{
+        this.props.render()
+      })
     }
   }
 
+
   render() {
       return (
-        <div className="ui labeled button" tabindex="0">
-          <div className="ui button" onClick={this.toggleLike}>
-            <i className="heart icon"></i> Like
+          <div className="ui labeled button" tabindex="0" >
+            <div className="ui button" onClick={this.toggleLike} >
+              <i className="heart icon"></i> Like
+            </div>
+            <label className="ui basic label">
+              {this.props.message && this.props.message.likes.length || 0}
+            </label>
           </div>
-          <label className="ui basic label">
-            {this.props.message.likes.length}
-          </label>
-        </div>
       )
     }
 }
 
-export default connect(null,{like, unlike})(LikeButton) 
+export default connect(({ auth })=>({
+  token: auth.token
+}),{like, unlike, getMessage})(LikeButton)
