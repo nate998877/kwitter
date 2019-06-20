@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { domain } from "../../../actions/constants"
 import { connect } from "react-redux";
-import { getMessages } from "../../../actions";
+import { getMessages, getUsers } from "../../../actions";
 import Chit from "../ScrollPageComponents/Chit"
 import acorn from "../../../pictures/acorn.png"
 
@@ -29,34 +29,80 @@ import acorn from "../../../pictures/acorn.png"
 // fetchCurrentMessages(); 
 
 class ChitFeed extends Component {
+    state = {}
     // currentMessages() {
     //     fetch(fetchMessagesURL)
     //     .then(res => res.json())
     //     .then(data => {console.log(data)})
     // }
-
     componentDidMount() {
         this.props.getMessages({});
+        this.props.getUsers({});
+        this.loadChits()
+        
     }
-
+    loadChits(){
+        // let dataArr = []
+        this.props.messages.map(message => {
+            fetch(`https://kwitter-api.herokuapp.com/users/${message.userId}`, {
+                method: "GET", 
+                "content-type": "application/json"
+            })
+            .then(res => res.json())
+            .then(async function chitCall (data) {
+                await data
+                console.log(data)
+                let newChitInstance = (<Chit postContent={message.text} profileImage={data.user.pictureLocation} userName={data.user.username}/>)
+                // dataArr.push(newChitInstance)})
+                return newChitInstance 
+        })
+        
+        
+        // this.setState({
+        //     userID: dataArr, 
+        //     messages: [...this.props.messages], 
+        //     users: [...this.props.users]
+        // })
+        // return (
+        //     <React.Fragment>
+        //         {dataArr}
+        //     </React.Fragment>
+        // )
+        // console.log(this.state)
+    })
+    }   
+    
     render() {
+        console.log(this.loadChits())
         return (
             <React.Fragment>
-            {this.props.messages.map(message => {
-                return (<Chit postContent={message.text} profileImage={acorn} userName={message.userId}/>)
-            })}
+                {this.loadChits()}
             </React.Fragment>
+            // <React.Fragment>
+            // {this.props.messages.map(message => {
+            //     fetch(`https://kwitter-api.herokuapp.com/users/${message.userId}`, {
+            //         method: "GET", 
+            //         "content-type": "application/json"
+            //     })
+            //     .then(res => res.json())
+            //     .then(data => {return data})
+            //     return (<Chit postContent={message.text} profileImage={acorn} userName={message.userId}/>)
+            // })}
+            // </React.Fragment>
         )
     }
+    
 }
 
 const mapDispatchToProps = {
-    getMessages
+    getMessages, 
+    getUsers
 }
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.messages.messages
+        messages: state.messages.messages,
+        users: state.users.users, 
     }
 }
 

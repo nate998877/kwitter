@@ -27,7 +27,7 @@ export const DELETE_USER_FAIL          = "DELETE_USER_FAIL";
 const url = domain + "/users";
 
 // action creators
-const getUsers = userData => dispatch => {
+export const getUsers = userData => dispatch => {
   //userData is an object {limit, offset}
   dispatch({
     type: GET_USERS
