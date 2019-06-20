@@ -1,5 +1,5 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-
+import {getUser} from "./users"
 // action types
 export const GET_MESSAGES = "GET_MESSAGES";
 export const GET_MESSAGES_SUCCESS = "GET_MESSAGES_SUCCESS";
@@ -42,10 +42,21 @@ const getMessages = (messageData = {}) => dispatch => {
   return fetch(constructedURL)
     .then(handleJsonResponse)
     .then(result => {
-      return dispatch({
-        type: GET_MESSAGES_SUCCESS,
-        payload: result
-      });
+      return Promise.all(
+        result.messages.map(message => {
+        return dispatch(getUser({userId: message.userId}))}
+      )).then(usersResult => {
+        usersResult.forEach((action, i )=> {
+          const message = result.messages[i]
+          message.pictureLocation = action.payload.user.pictureLocation
+          message.username = action.payload.user.username
+        })
+        return dispatch({
+          type: GET_MESSAGES_SUCCESS,
+          payload: result
+        });
+      }
+      )
     })
     .catch(err => {
       return Promise.reject(

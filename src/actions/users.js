@@ -60,7 +60,7 @@ const getUsers = (userData = {}) => dispatch => {
     });
   }
 
-const getUser = userData => dispatch => {
+export const getUser = userData => dispatch => {
   //userData is an object {userId:useruserId}
   dispatch({
     type: GET_USER
