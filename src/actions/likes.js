@@ -46,7 +46,7 @@ const unlike = likeData => dispatch => {
     type: UNLIKE
   });
 
-  return fetch(url + "/" + likeData.id, {
+  return fetch(url +`/${likeData.id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${likeData.token}`

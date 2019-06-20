@@ -7,21 +7,22 @@ class NewUserForm extends Component {
     state = {
         username: "",
         displayName: "",
-        password: ""
+        password: "",
     };
 
     handleChange = (e) => { 
       this.setState( {[e.target.name]: e.target.value } ) 
     }
 
-    //This handle submit should be changed to a semantic-ui form valdiation. Don't ask me how to do that ¯\_(ツ)_/¯
     handleSubmit = e => {
       let promise = this.props.createUser(this.state)
       const target = e.target
       e.preventDefault()
       this.props.onClose()
-      promise.catch(er=>{
-        console.log(er)
+      promise
+      .then(this.props.setValidity(true))
+      .catch(er=>{
+        this.props.setValidity(false)
         document.getElementById("username").setCustomValidity("Username already Taken")
         target.reportValidity()
         setTimeout(() => {
@@ -33,8 +34,6 @@ class NewUserForm extends Component {
     verifyPassword(input){
       return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
     }
-
-    handleClose = () => this.setState({ modalOpen: false })
 
     render() {
         return (

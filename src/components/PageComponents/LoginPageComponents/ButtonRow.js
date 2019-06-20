@@ -3,9 +3,27 @@ import { Button, Modal, Header } from "semantic-ui-react";
 import NewUserForm from "./NewUserForm"
 
 class ButtonRow extends Component {
-  state = { modalOpen: false }
+  state = { 
+    modalOpen: false,
+    isUserFormValid: false
+  }
+
+  setUserFormValidity = (Validity) =>{
+    this.setState({ isUserFormValid:Validity })
+  }
+  
   handleOpen = () => this.setState({ modalOpen: true })
-  handleClose = () => this.setState({ modalOpen: false })
+  handleClose = (event) => {
+    if(event){
+      this.setState({ modalOpen: false })
+    } 
+
+    //This waits 
+    setTimeout(
+      ()=>{if(this.state.isUserFormValid) this.setState({ modalOpen: false })}, 
+      300
+    )
+  }
 
   render() {
     return (
@@ -24,7 +42,7 @@ class ButtonRow extends Component {
           >
             <Header content="New User Form" />
             <Modal.Content onClick={(e) => { e.stopPropagation() }}>
-              <NewUserForm onClose = {this.handleClose} />
+              <NewUserForm onClose = {this.handleClose} setValidity={this.setUserFormValidity}/>
             </Modal.Content>
           </Modal>
         </div>

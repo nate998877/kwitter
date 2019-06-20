@@ -27,24 +27,21 @@ export const DELETE_USER_FAIL          = "DELETE_USER_FAIL";
 const url = domain + "/users";
 
 // action creators
-const getUsers = userData => dispatch => {
+const getUsers = (userData={}) => dispatch => {
   //userData is an object {limit, offset}
   dispatch({
     type: GET_USERS
   });
   
-
-  const limit = userData.limit ? `limit=${userData.limit}`: ""
-  const offset = userData.offset ? `offset=${userData.offset}`: ""
-  const renderArr = [limit, offset]
-  let createdUrl = url+"?"
-  for(let condition of renderArr){
-    if(condition){
-      createdUrl = createdUrl+condition+'&'
-    }
+  let optionalParams = new URLSearchParams()
+  const keys = userData.keys()
+  const values = userData.values()
+  for(let i = 0; i < keys.length-1; i++){
+    optionalParams.append(keys[i], values[i])
   }
+  let constructedURL = keys.length ? url+"?"+optionalParams : url
 
-  return fetch(createdUrl)
+  return fetch(constructedURL)
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
@@ -79,14 +76,15 @@ const getUser = userData => dispatch => {
     });
 };
 
-const getUserPhoto = userData => dispatch => {
+const getUserPhoto = userData => (dispatch, getState) => {
   //userData is an object {userId:useruserId}
   dispatch({
     type: GET_USER_PHOTO
   });
+  const store = getState()
+  let userId = store.auth.login && store.auth.login.id || 5
 
-  return fetch(url+`/${userData.userId}/picture`)
-    .then(handleJsonResponse)
+  return fetch(url+`/${userId}/picture`)
     .then(result => {
       return dispatch({
         type: GET_USER_PHOTO_SUCCESS,
