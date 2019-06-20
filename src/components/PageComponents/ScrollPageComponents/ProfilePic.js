@@ -5,8 +5,7 @@ import { Grid, Image } from "semantic-ui-react";
 import { UpdatePhotoModal } from "."
 import { connect } from "react-redux"
 import { getUserPhotoAction as getUserPhoto } from "../../../actions"
-import settings from "../../../pictures/settingsAcorn.png"
-
+import imageChange from "../../../pictures/imageChangeAcorn.png"
 class ProfilePic extends Component {
   state = {}
   componentDidMount(){
@@ -26,7 +25,7 @@ class ProfilePic extends Component {
             <Image src={this.state.userPhoto || this.props.defaultSquirrel} alt="Profile Picture" />
           </Grid.Row>
           <Grid.Row>
-            <UpdatePhotoModal isLoading={this.props.isLoading} acorn={settings} />
+            <UpdatePhotoModal isLoading={this.props.isLoading} acorn={imageChange} />
           </Grid.Row>
         </Grid.Column>
         <Grid.Column id="coverPic" />

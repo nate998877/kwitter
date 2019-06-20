@@ -26,12 +26,12 @@ class Chit extends Component {
               </div>
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column width={7}>
-            <Grid.Row>
-              {this.props.userName} | {moment(this.props.time).fromNow()}
-            </Grid.Row>
+          <Grid.Column width={7} >
             <Grid.Row>
               <p>{this.props.text}</p>
+            </Grid.Row>
+            <Grid.Row>
+              {this.props.userName} | {moment(this.props.time).fromNow()}
             </Grid.Row>
             <LikeButton message={this.props.self} render={this.props.reRenderMessages}/>
           </Grid.Column>
