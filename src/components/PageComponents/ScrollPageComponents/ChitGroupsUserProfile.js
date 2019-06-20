@@ -6,10 +6,11 @@ import { getMessagesAction } from "../../../actions/messages";
 //good luck implementing this
 class ChitGroupsUserProfile extends Component {
   componentDidMount() {
-    this.props.getMessagesAction({id: this.props.userid});
+    let payload = this.props.getMessagesAction({id: this.props.userid});
   }
 
   render() {
+    console.log(this.props.chits)
     return (
       <React.Fragment>
         {this.props.chits.map(chit => {

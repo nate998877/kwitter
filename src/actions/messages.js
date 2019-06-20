@@ -24,7 +24,9 @@ const getMessages = (messageData = {}) => dispatch => {
   });
   let optionalParams = new URLSearchParams()
   let constructedURL
-  
+  // messageData = {key:"value"}
+  console.log(messageData)
+  console.log(!Object.keys(messageData).length)
   if(!Object.entries(messageData).length === 0 && messageData.constructor === Object){
     const keys = messageData.keys()
     const values = messageData.values()
@@ -35,7 +37,7 @@ const getMessages = (messageData = {}) => dispatch => {
   } else {
     constructedURL = url
   }
-
+  console.log(constructedURL)
 
   return fetch(constructedURL)
     .then(handleJsonResponse)
@@ -136,3 +138,4 @@ export const createMessageAction = messageData => dispatch => {
 export const deleteMessageAction = messageData => dispatch => {
   return dispatch(deleteMessage(messageData));
 };
+ 

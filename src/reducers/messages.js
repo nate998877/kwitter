@@ -17,7 +17,7 @@ DELETE_MESSAGE_FAIL,
 
 const initialState = {
   messageLoading: false,
-  message: null,
+  messages: [],
   messageError: null
 };
 
@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
         messageError: null
       };
     case GET_MESSAGES_SUCCESS:
-      return { ...state, message: action.payload, messageLoading: false };
+      return { ...state, messages: action.payload.messages, messageLoading: false };
     case GET_MESSAGES_FAIL:
       return { ...state, messageError: action.payload, messageLoading: false };
       
