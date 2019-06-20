@@ -4,9 +4,17 @@ import { Modal, Button, Form, Image, Icon } from "semantic-ui-react";
 class CreateChit extends Component {
   state = { modalOpen: false };
 
-  handleOpen = () => this.setState({ modalOpen: true });
+  handleOpen = () => this.setState({ modalOpen: true })
+  handleClose = (event) => {
+    if(event){
+      this.setState({ modalOpen: false })
+    } 
 
-  handleClose = () => this.setState({ modalOpen: false });
+    setTimeout(
+      ()=>{if(this.state.isUserFormValid) this.setState({ modalOpen: false })}, 
+      300
+    )
+  }
 
   handleSubmitNewPost = event => {
     alert("Post submitted ");
