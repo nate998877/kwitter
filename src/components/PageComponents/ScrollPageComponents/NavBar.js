@@ -11,6 +11,7 @@ class NavBar extends Component {
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
   }
+  handleClose = () => this.setState({ modalOpen: false })
 
   handleLogout = (e, elem) => {
     this.handleItemClick(e, elem)
@@ -31,7 +32,7 @@ class NavBar extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item name='New Post' active={activeItem === 'New Post'} >
-            <CreateChit acorn={acorn} />
+            <CreateChit acorn={acorn} handleClose = {this.handleClose}/>
           </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item name='Profile'  href="/profile" active={activeItem === 'Profile'} onClick={this.handleItemClick} />

@@ -1,34 +1,53 @@
-
 import React, { Component } from "react";
-import { Modal, Button, Form, Image, Icon } from 'semantic-ui-react'
+import { Modal, Button, Form, Image, Icon } from "semantic-ui-react";
 
 class CreateChit extends Component {
-  submitNewPost() {
-    alert("Post submitted ")
-  }
+  state = { modalOpen: false };
+
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false });
+
+  handleSubmitNewPost = event => {
+    alert("Post submitted ");
+    this.handleClose();
+  };
 
   //this.props.messages.likes.length
   //this.props.messages.length
 
   render() {
     return (
-      <Modal trigger={<Button > <img src={this.props.acorn} alt="acorn" /></Button>}>
+      <Modal
+        trigger={
+          <Button>
+            <img src={this.props.acorn} onClick={this.handleOpen} alt="acorn" />
+          </Button>
+        }
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+      >
         <Modal.Header>Whats on your mind? Submit new chit!</Modal.Header>
         <Modal.Content image>
-          <Image wrapped size='small' src={this.props.acorn} />
+          <Image wrapped size="small" src={this.props.acorn} />
           <Form>
-            <Form.Input placeholder='Enter a Chit Topic' name='chitTopic' type="text" />
+            <Form.Input
+              placeholder="Enter a Chit Topic"
+              name="chitTopic"
+              type="text"
+            />
             <Form.TextArea placeholder="Insert Chit" />
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={this.submitNewPost} primary>
-            Add New Chit!<Icon name='right chevron' />
+          <Button onClick={this.handleSubmitNewPost} primary>
+            Add New Chit!
+            <Icon name="right chevron" />
           </Button>
         </Modal.Actions>
       </Modal>
-    )
+    );
   }
 }
 
-export default CreateChit
+export default CreateChit;
