@@ -5,37 +5,31 @@ import Chit from "../ScrollPageComponents/Chit"
 
 
 class ChitFeed extends Component {
-    state = {}
-    loadChits(){
-        const messages = this.props.getMessages()
-        console.log(messages)
-        for(let message of messages){
-            console.log(message)
-            this.props.getuser({userId:message.userId})
-        }
+    state = {chits: []}
 
-
-        this.props.messages.map(message => {
-            fetch(`https://kwitter-api.herokuapp.com/users/${message.userId}`, {
-                method: "GET", 
-                "content-type": "application/json"
-            })
-            .then(res => res.json())
-            .then(async function chitCall (data) {
-                await data
-                console.log(data)
-                let newChitInstance = (<Chit postContent={message.text} profileImage={data.user.pictureLocation} userName={data.user.username}/>)
-                return newChitInstance 
+    componentDidMount(){
+        this.loadChits().then(arr=>{
+            this.setState({chits:arr})
         })
-    })
-    }   
+    }
+
+    async loadChits(){
+        const promise = await this.props.getMessages()
+        const messages = promise.payload.messages
+        let arr = []
+        for(let message of messages){
+            const user = await this.props.getUser({ userId:message.userId })
+            const trueUser = user.payload.user
+            arr.push(<Chit postContent={message.text} profileImage={trueUser.pictureLocation} userName={trueUser.username}/>)
+        }
+        return arr
+    }
     
     render() {
-        console.log("running")
-        console.log(this.loadChits())
+        console.log(this.state.chits)
         return (
             <React.Fragment>
-                {this.loadChits()}
+                {this.state.chits}
             </React.Fragment>
         )
     }

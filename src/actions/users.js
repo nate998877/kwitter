@@ -34,7 +34,7 @@ const getUsers = (userData = {}) => dispatch => {
   });
   let constructedURL
   let optionalParams = new URLSearchParams()
-  if(userData){
+  if(!Object.entries(userData).length === 0 && userData.constructor === Object){
     const keys = userData.keys()
     const values = userData.values()
     for(let i = 0; i < keys.length-1; i++){

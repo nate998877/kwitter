@@ -24,7 +24,7 @@ const getMessages = (messageData = {}) => dispatch => {
   });
   let optionalParams = new URLSearchParams()
   let constructedURL
-  if(Object.entries(messageData).length === 0 && messageData.constructor === Object){
+  if(!Object.entries(messageData).length === 0 && messageData.constructor === Object){
     const keys = messageData.keys()
     const values = messageData.values()
     for(let i = 0; i < keys.length-1; i++){
