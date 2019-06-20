@@ -37,7 +37,7 @@ class UserProfile extends Component {
         <Grid.Column width={1}>
           <ProfileInfo user={this.props.user} message={this.props.message} />
         </Grid.Column>
-          <Grid.Column width={8} style = {{border: '1px solid black'}}>
+          <Grid.Column width={8} style = {{margin: '5px'}}>
           <ChitGroupsUserProfile></ChitGroupsUserProfile>
           </Grid.Column>
           <PostInfo />
