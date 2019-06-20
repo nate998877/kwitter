@@ -19,7 +19,6 @@ class NavBar extends Component {
     this.setState({logout:true})
   }
 
-
   render() {
     let { activeItem } = this.state
     return (

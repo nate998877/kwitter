@@ -1,4 +1,4 @@
-import { ProfileInfo, ProfilePic, PostInfo, NavBar, Chit, UpdatePhotoModal } from "../PageComponents/ScrollPageComponents"
+import { ProfileInfo, ProfilePic, PostInfo, NavBar, Chit, UpdatePhotoModal, ChitGroupsUserProfile } from "../PageComponents/ScrollPageComponents"
 import defaultSquirrel from "../../pictures/profileSquirrel.jpeg";
 import settings from "../../pictures/settingsAcorn.png";
 import { Grid } from "semantic-ui-react";
@@ -20,22 +20,19 @@ class UserProfile extends Component {
     if(!this.state.users){this.setState({users:this.props.getUser({ userId: this.props.id }).users})}
   }
 
-  //this is left here for reasons, please don't touch
-  async messageObjToArr() {
-    let messages = await this.props.getMessages({ userId: this.props.id });
-    messages = messages.payload.messages;
-  }
-
   render() {
-    const { isLoading } = this.props;
+    const { user, isLoading } = this.props;
     return (
       <React.Fragment>
         <NavBar />
-        <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings} />
-        <UpdatePhotoModal isLoading={isLoading}/>
-        <div id="deepBackground" />
+        <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings}/>
         <Grid columns={2} id="profileinfo2" divided>
-          <ProfileInfo user={this.props.user} message={this.props.message} />
+        <Grid.Column width={1}>
+          <ProfileInfo user={user} message={this.props.message} />
+        </Grid.Column>
+          <Grid.Column width={8} style = {{border: '1px solid black'}}>
+          <ChitGroupsUserProfile />
+          </Grid.Column>
           <PostInfo />
         </Grid>
       </React.Fragment>
@@ -47,7 +44,6 @@ class UserProfile extends Component {
 export default connect(
   ({ auth, users, messages }) => ({
     isLoading: users.usersLoading,
-    err: users.usersError,
     user: (users.users && users.users.user) || {
       displayname: "",
       username: "",
