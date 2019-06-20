@@ -7,15 +7,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#deepBackground{
-  position: sticky !important;
-  top: 0 !important;
-  margin: 0px;
-  background-image: url("https://www.rezatec.com/wp-content/uploads/forest1_new-1280x600.jpg") !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-
-}
 #buttonRow {
   display:flex !important;
   flex-direction: row !important;
@@ -57,7 +48,9 @@ body {
 #setPiles{
   width:366px !important
 }
-
+textarea{
+  width:100% !important
+}
 #background {
   background-color: rgba(245, 245, 245, 0.479) !important;
   display:flex !important;
@@ -142,4 +135,10 @@ li{
 
 #temp{
   z-index: 10;
+}
+
+.chitPost-Container{
+  display: flex;
+  border: 1px dotted black;
+  margin: 10px;
 }
