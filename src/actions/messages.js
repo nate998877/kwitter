@@ -23,12 +23,18 @@ const getMessages = (messageData = {}) => dispatch => {
     type: GET_MESSAGES
   });
   let optionalParams = new URLSearchParams()
-  const keys = messageData.keys()
-  const values = messageData.values()
-  for(let i = 0; i < keys.length-1; i++){
-    optionalParams.append(keys[i], values[i])
+  let constructedURL
+  if(Object.entries(messageData).length === 0 && messageData.constructor === Object){
+    const keys = messageData.keys()
+    const values = messageData.values()
+    for(let i = 0; i < keys.length-1; i++){
+      optionalParams.append(keys[i], values[i])
+    }
+    constructedURL = url+"?"+optionalParams 
+  } else {
+    constructedURL = url
   }
-  let constructedURL = keys.length ? url+"?"+optionalParams : url
+
 
   return fetch(constructedURL)
     .then(handleJsonResponse)

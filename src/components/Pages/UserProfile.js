@@ -25,13 +25,7 @@ class UserProfile extends Component {
     return (
       <React.Fragment>
         <NavBar />
-<<<<<<< HEAD
         <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings}/>
-
-=======
-        <ProfilePic isLoading={isLoading} defaultSquirrel={defaultSquirrel} settings={settings} />
-        <div id="deepBackground" />
->>>>>>> Final-Project-Touchups
         <Grid columns={2} id="profileinfo2" divided>
         <Grid.Column width={1}>
           <ProfileInfo user={user} message={this.props.message} />

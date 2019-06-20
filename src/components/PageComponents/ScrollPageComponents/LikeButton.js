@@ -9,7 +9,8 @@ class LikeButton extends Component {
     let likeid
     if(this.props.message.likes.length){
       for(const like of this.props.message.likes){
-        if(like.userId === this.props.message.userId){
+        console.log("running")
+        if(like.userId === this.props.userId){
           whichFetch = true;
           likeid = like.id
         }
@@ -46,5 +47,6 @@ class LikeButton extends Component {
 }
 
 export default connect(({ auth })=>({
-  token: auth.token
+  token: auth.token,
+  userId: auth.userId
 }),{like, unlike, getMessage})(LikeButton)

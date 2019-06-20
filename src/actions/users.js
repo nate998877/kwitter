@@ -27,19 +27,23 @@ export const DELETE_USER_FAIL          = "DELETE_USER_FAIL";
 const url = domain + "/users";
 
 // action creators
-const getUsers = (userData={}) => dispatch => {
+const getUsers = (userData = {}) => dispatch => {
   //userData is an object {limit, offset}
   dispatch({
     type: GET_USERS
   });
-  
+  let constructedURL
   let optionalParams = new URLSearchParams()
-  const keys = userData.keys()
-  const values = userData.values()
-  for(let i = 0; i < keys.length-1; i++){
-    optionalParams.append(keys[i], values[i])
+  if(userData){
+    const keys = userData.keys()
+    const values = userData.values()
+    for(let i = 0; i < keys.length-1; i++){
+      optionalParams.append(keys[i], values[i])
+    }
+    constructedURL = url+"?"+optionalParams 
+  } else {
+    constructedURL = url
   }
-  let constructedURL = keys.length ? url+"?"+optionalParams : url
 
   return fetch(constructedURL)
     .then(handleJsonResponse)

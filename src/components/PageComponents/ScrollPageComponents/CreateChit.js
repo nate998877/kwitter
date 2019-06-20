@@ -11,6 +11,7 @@ class CreateChit extends Component {
   submitNewPost = e => {
     e.preventDefault();
     this.props.createChit(this.state)
+  }
 
   render() {
     return (
