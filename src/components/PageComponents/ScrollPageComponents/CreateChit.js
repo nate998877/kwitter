@@ -9,7 +9,6 @@ class CreateChit extends Component {
     if(event){
       this.setState({ modalOpen: false })
     } 
-
     setTimeout(
       ()=>{if(this.state.isUserFormValid) this.setState({ modalOpen: false })}, 
       300
