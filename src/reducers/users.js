@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
         usersError: null
       };
     case GET_USERS_SUCCESS:
-      return { ...state, users: action.payload, usersLoading: false };
+      return { ...state, users: action.payload.users, usersLoading: false };
     case GET_USERS_FAIL:
       return { ...state, usersError: action.payload, usersLoading: false };
 

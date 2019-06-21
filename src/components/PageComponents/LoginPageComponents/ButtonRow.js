@@ -31,9 +31,6 @@ class ButtonRow extends Component {
         <h2>Take part in the Chittering</h2>
         <div id='buttonRow'>
           {/* This button should probably be removed  */}
-          <Button disabled={this.props.isLoading}>
-            Forgotten Password
-          </Button>
           <Modal
             open = {this.state.modalOpen}
             onClose = {this.handleClose}

@@ -31,7 +31,7 @@ class Chit extends Component {
               <p>{this.props.text}</p>
             </Grid.Row>
             <Grid.Row>
-              {this.props.userName} | {moment(this.props.time).fromNow()}
+              {this.props.username} | {moment(this.props.time).fromNow()}
             </Grid.Row>
             <LikeButton message={this.props.self} render={this.props.reRenderMessages}/>
           </Grid.Column>

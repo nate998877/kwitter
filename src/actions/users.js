@@ -32,22 +32,23 @@ const getUsers = (userData = {}) => dispatch => {
   dispatch({
     type: GET_USERS
   });
-  let constructedURL
-  let optionalParams = new URLSearchParams()
-  if(userData){
-    const keys = userData.keys()
-    const values = userData.values()
-    for(let i = 0; i < keys.length-1; i++){
-      optionalParams.append(keys[i], values[i])
-    }
-    constructedURL = url+"?"+optionalParams 
-  } else {
-    constructedURL = url
-  }
+  // let constructedURL
+  // let optionalParams = new URLSearchParams()
+  // if(userData){
+  //   const keys = userData.keys()
+  //   const values = userData.values()
+  //   for(let i = 0; i < keys.length-1; i++){
+  //     optionalParams.append(keys[i], values[i])
+  //   }
+  //   constructedURL = url+"?"+optionalParams 
+  // } else {
+  //   constructedURL = url
+  // }
 
-  return fetch(constructedURL)
+  return fetch(url)
     .then(handleJsonResponse)
     .then(result => {
+      console.log(result)
       return dispatch({
         type: GET_USERS_SUCCESS,
         payload: result

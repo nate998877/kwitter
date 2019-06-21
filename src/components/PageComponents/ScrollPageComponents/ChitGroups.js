@@ -33,13 +33,6 @@ class ChitGroups extends Component {
       //   </Segment>
       // </SegmentGroup >
       <React.Fragment>
-        {this.props.chits}
-        {this.props.chits}
-        {this.props.chits}
-        {this.props.chits}
-        {this.props.chits}
-        {this.props.chits}
-        {this.props.chits}
         {this.props.chits.map(chit => (
               <Chit key={chit.id} text={chit.text} time={chit.createdAt} self={chit} reRenderMessages={this.props.getMessagesAction} />))}
       </React.Fragment>

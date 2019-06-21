@@ -1,5 +1,5 @@
 import configureStore, { history } from "./configureStore";
-import { ConnectedRouter } from "connected-react-router";
+import { ConnectedRouter, connectRouter } from "connected-react-router";
 import * as serviceWorker from "./serviceWorker";
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from "react-redux";
@@ -8,7 +8,10 @@ import ReactDOM from "react-dom";
 import React from "react";
 import "./index.css";
 
-const store = configureStore({});
+export const store = configureStore({});
+
+
+
 
 ReactDOM.render(
   <Provider store={store}>

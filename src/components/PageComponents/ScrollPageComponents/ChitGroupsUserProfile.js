@@ -12,9 +12,17 @@ class ChitGroupsUserProfile extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.chits.map(chit => {
-          return <Chit key={chit.id} text={chit.text} time={chit.createdAt} self={chit} reRenderMessages={()=>{this.props.getMessagesAction({id: this.props.userid})}} />
-        })}
+        {this.props.chits.filter(message => message.userId === this.props.userid).map(chit => (
+          <Chit 
+            key={chit.id} 
+            text={chit.text} 
+            time={chit.createdAt} 
+            user={chit.username}
+            self={chit} 
+            reRenderMessages={()=> this.props.getMessagesAction({id: this.props.userid})}
+          />
+        ))
+        }
       </React.Fragment>
     );
   }
@@ -24,7 +32,7 @@ export default connect(
   ({ messages, auth }) => {
     return {
       chits: messages.message && messages.message.messages || [],
-      userid: auth.login && auth.login.id || 5
+      userid: auth.login.id
     };
   },
   { getMessagesAction }
